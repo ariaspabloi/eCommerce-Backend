@@ -1,0 +1,9 @@
+extends layout
+block myapp
+  h1 Productos
+  .text-bg-light.p-3.m-5.border.border-dark.rounded
+    .d-flex.flex-column.flex-md-row.justify-content-evenly.align-items-center.py-4.mt-3
+      each val in products
+        h3.fs-2=val.title
+        p.fs-4=val.price
+        img.img-fluid(style='width: 80px' src=val.thumbnail)
