@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./layouts/head.ejs') %>
+</head>
+
+<body>
+
+<h1>Productos</h1>
+<div class="text-bg-light p-3 m-5 border border-dark rounded">
+  <div class="d-flex flex-column flex-md-row justify-content-evenly align-items-center py-4 mt-3">
+
+    <% products.forEach(function(product){ %>
+      <div class="mt-5">
+        <h3 class="fs-2"><%= product.title %></h3>
+        <p class="fs-4"><%= product.price %>}</p>
+        <img class="img-fluid" style="width: 80px" src=<%=product.thumbnail%> />
+      </div>
+    <% }); %>
+  </div>
+</div>
+
+
+</body>
+
+</html>

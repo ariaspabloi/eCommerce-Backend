@@ -1,6 +1,16 @@
-{{#if loaded}}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./layouts/head.ejs') %>
+</head>
+
+<body>
+
+
+<% if (loaded) { %>
 <h2>Producto agregado</h2>
-{{/if}}
+<% } %>
 
 <div class="text-bg-light px-5 py-4 mt-5 mx-auto border border-dark rounded w-50">
   <form action="/productos" method="post">
@@ -19,3 +29,7 @@
     <button type="submit" class="btn btn-primary">Subir</button>
   </form>
 </div>
+
+</body>
+
+</html>
