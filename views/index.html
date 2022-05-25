@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Productos Chat</title>
+</head>
+<body>
+    <div class="myapp">
+        <div id="products">
+
+        </div>
+
+        <div id="addProduct">
+            <div class="text-bg-light px-5 py-4 mt-2 mx-auto border border-dark rounded w-50">
+                  <div class="mb-3">
+                    <label for="title" class="form-label">Titulo</label>
+                    <input class="form-control" type="text" id="title" name="title" placeholder="Nombre" aria-label="default input example">
+                  </div>
+                  <div class="mb-3">
+                    <label for="price" class="form-label">Precio</label>
+                    <input class="form-control" type="text" id="price" name="price" placeholder="590" aria-label="default input example">
+                  </div>
+                  <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Imagen</label>
+                    <input class="form-control" type="text" id="thumbnail" name="thumbnail" placeholder="https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png" aria-label="default input example">
+                  </div>
+                  <button id="addProduct_btn" class="btn btn-primary">Subir</button>
+              </div>
+        </div>
+
+        <div id="messages">
+
+        </div>
+        
+        <div id="inputBox" class="text-bg-light mt-2 p-3 border border-dark rounded w-50 mx-auto">
+            <input type="email" id="inputAutor" placeholder="Email" style="width: 25%"/>
+            <input type="text" id="inputMsg" placeholder="Mensaje" style="width: 55%"/>
+            <button id="sendBtn" style="width: 18%">Enviar</button>
+        </div>
+    </div>
+    
+    <footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+    </footer>
+</body>
+<script src="js/index.js"></script>
+</html>

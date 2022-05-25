@@ -11,7 +11,7 @@ class ProductDao {
         if (objects.some(o => o.id == object.id)) return;
         objects.push(object);
         try {
-            fs.promises.writeFile(this.path, JSON.stringify(objects, null, 2));
+            await fs.promises.writeFile(this.path, JSON.stringify(objects, null, 2));
         } catch (error) {
             throw new Error(`Error en guardar objeto de id ${object.id}`);
         }

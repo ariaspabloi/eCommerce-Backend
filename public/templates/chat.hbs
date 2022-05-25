@@ -1,0 +1,15 @@
+<div class="text-bg-light p-3 mt-4 border border-dark rounded w-50 mx-auto">
+  <h3>
+    Mensajes
+  </h3>
+  <div class="p-4 mt-3 bg-white border border-dark rounded">
+    {{#each messages}}
+      <p>
+        <span style="font-weight:bold;color: blue">{{this.autor}}</span>
+        <span style="color: grey">[{{this.date}}]</span>
+        :
+        <i style="color: green;">{{this.msg}}</i>
+      </p>
+    {{/each}}
+  </div>
+</div>
