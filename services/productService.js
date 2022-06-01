@@ -1,9 +1,14 @@
-const { ProductDao } = require('./ProductDao');
+
+const { ProductDao } = require('../persistence/ProductDao');
 const productDao = new ProductDao("productos.txt");
 let products = productDao.getAll();
 
 async function getProducts(){
-    products = await productDao.getAll();
+    try{
+        products = await productDao.getAll();
+    }catch(error){
+        throw error;
+    }
     return products;
 }
 

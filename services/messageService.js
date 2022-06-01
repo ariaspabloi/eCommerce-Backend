@@ -1,4 +1,4 @@
-const { MessageDao } = require('./MessageDao');
+const { MessageDao } = require('../persistence/MessageDao');
 const messageDao = new MessageDao("messages.txt");
 let messages = messageDao.getAll();
 

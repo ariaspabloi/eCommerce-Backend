@@ -2,20 +2,24 @@
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const express = require('express')
-const bp = require('body-parser')
-const { apiControllers } = require('./controllers/apiControllers.js')
-const { routerApiProducts } = require('./routers/routerApiProducts.js')
-const webRouter = require('./routers/webRouter.js')
-const cnxEventController = require('./controllers/sockets/socketControllers.js')
+const webRouter = require('./frontend/routers/webRouter.js')
+const cnxEventController = require('./frontend/controllers/sockets/socketController');
+const { routerApiCart } = require("./api/routers/routerApiCart.js");
+const { routerApiProduct } = require("./api/routers/routerApiProduct.js");
+const bodyParser = require('body-parser');
 const app = express()
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
 app.use(express.static('public'))
-//app.get('/', apiControllers.info)
 
+app.use(bodyParser.json());
 app.use('/', webRouter)
-app.use(routerApiProducts)
+app.use('/api/productos',routerApiProduct)
+app.use('/api/carritos',routerApiCart)
+app.all('*', (req, res) => {
+    res.status(404).json({error:-2,descripcion:`Ruta ${req.originalUrl} metodo ${req.method} no implementada`});
+})
 
 io.on('connection', socket => cnxEventController(socket, io))
 

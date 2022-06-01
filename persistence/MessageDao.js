@@ -2,7 +2,7 @@ const fs = require('fs');
 
 class MessageDao {
     constructor(path) {
-        this.path = `databases/${path}`;
+        this.path = `.\\persistence\\databases\\${path}`;
     }
 
     async save(object) {
@@ -24,7 +24,8 @@ class MessageDao {
         try {
             objects = await fs.promises.readFile(this.path, 'utf-8');
         } catch (error) {
-            throw new Error(`Error en leer archivo ${this.path}`);
+            //throw new Error(`Error en leer archivo ${this.path}`);
+            console.log(`Error en leer archivo ${this.path}`);
         }
         if (objects.length == 0) return [];
         objects = [...JSON.parse(objects)];

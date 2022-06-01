@@ -1,5 +1,5 @@
-const { getMessages, saveMessage } = require('../../databases/messages')
-const { getProducts, saveProduct } = require('../../databases/products')
+const { getMessages, saveMessage } = require('../../../services/messageService')
+const { getProducts, saveProduct } = require('../../../services/productService')
 
 async function cnxEventController(socket, io) {
     console.log("Nuevo cliente")
