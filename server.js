@@ -15,7 +15,8 @@ app.use(express.static('public'))
 //app.get('/', apiControllers.info)
 
 app.use('/', webRouter)
-app.use(routerApiProducts)
+app.use('/api/productos',routerApiProducts)
+app.use('/api/carritos',routerApiCarritos)
 
 io.on('connection', socket => cnxEventController(socket, io))
 
