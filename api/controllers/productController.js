@@ -1,5 +1,6 @@
 const { ProductDao } = require('../../persistence/ProductDao');
-const productDao = new ProductDao("productos.txt");
+const { mysql } = require('../../options/dbConnections')
+const productDao = new ProductDao(mysql);
 const testMSG = "API Test /";
 
 const productController = {

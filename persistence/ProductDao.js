@@ -1,70 +1,71 @@
-const fs = require('fs');
+const { knex } = require('knex')
 
 class ProductDao {
-    constructor(path) {
-        this.path = `.\\persistence\\databases\\${path}`;
+    constructor(config) {
+        this.knex = knex(config)
     }
+
+    createTable(){
+        return this.knex.schema.hasTable('products').then( (exists) => {
+            if(!exists) {
+                return this.knex.schema.createTable('products', table => {
+                    table.integer('id').primary();
+                    table.string('title', 20).notNullable();
+                    table.integer('price').notNullable();
+                    table.string('thumbnail',50).notNullable();
+                  })
+            }
+        })
+    }
+   
 
     async save(object) {
         object.id = `${Date.now()}`;
         try {
-            let objects = await this.getAll();
-            if (objects.some(o => o.id == object.id)) throw new Error('el id ya existia');
-            objects.push(object);
-            await fs.promises.writeFile(this.path, JSON.stringify(objects, null, 2));
+            return this.knex('products').insert(object)
         } catch (error) {
             throw new Error(`Error en guardar objeto de id ${object.id}, ${error.message}`);
         }
-        return object;
     }
 
     async update(object, id) {
-        const objects = await this.getAll();
-        const objectIndex = objects.findIndex(p => p.id == id);
-        if (objectIndex == -1) throw new Error("No hay persona con el id");
-        object.id = id;
-        objects[objectIndex] = object;
-        fs.promises.writeFile(this.path, JSON.stringify(objects, null, 2));
-        return object;
+        try{
+            return this.knex('products').where('id', '=',id).update(object)
+        } catch (error) {
+            throw new Error(`Error en actualizar objeto de id ${object.id}, ${error.message}`);
+        }
 
     }
 
     async getById(id) {
-        const objects = await this.getAll();
-        const object = objects.find(p => p.id == id);
-        if (object === undefined) throw new Error(`no existe objeto con id ${id}`)
-        return object;
+        try{
+            return this.knex('products').select('*').where('id', '=',id)
+        } catch (error) {
+            throw new Error(`Error en recoger objeto de id ${object.id}, ${error.message}`);
+        }
     }
 
     async getAll() {
-        let objects;
-        try {
-            objects = await fs.promises.readFile(this.path, 'utf-8');
+        try{
+            return this.knex('products').select('*')
         } catch (error) {
-            throw new Error(`Error en leer archivo ${this.path}`);
+            throw new Error(`Error en leer todos los productos, ${error.message}`);
         }
-        if (objects.length == 0) return [];
-        objects = [...JSON.parse(objects)];
-        return objects;
     }
 
     async deleteById(id) {
-        try {
-            let objects = await this.getAll();
-            let index = objects.findIndex(o => o.id == id);
-            if (index == -1) throw new Error('no existe objeto con ese id');
-            objects.splice(index, index == 0 ? index + 1 : index);
-            return fs.promises.writeFile(this.path, JSON.stringify(objects, null, 2));
+        try{
+            return this.knex('products').where('id', '=',id).del()
         } catch (error) {
-            throw new Error(`Error en escritura, al borrar objeto de id ${id}, ${error.message}`);
+            throw new Error(`Error en recoger objeto de id ${object.id}, ${error.message}`);
         }
     }
 
     async deleteAll() {
-        try {
-            return fs.promises.writeFile(this.path, JSON.stringify([], null, 2));
+        try{
+            return this.knex('products').del()
         } catch (error) {
-            throw new Error("Error en escritura, al borrar todos los objetos");
+            throw new Error(`Error en recoger objeto de id ${object.id}, ${error.message}`);
         }
     }
 }

@@ -1,35 +1,32 @@
-const fs = require('fs');
-
+const { knex } = require('knex')
 class MessageDao {
-    constructor(path) {
-        this.path = `.\\persistence\\databases\\${path}`;
+    constructor(config) {
+        this.knex = knex(config)
     }
 
-    async save(object) {
-        const date = new Date(Date.now());
-        object.date = date.toLocaleString();
-        let objects = await this.getAll();
-        objects.push(object);
-        try {
-            await fs.promises.writeFile(this.path, JSON.stringify(objects, null, 2));
-        } catch (error) {
-            throw new Error(`Error en guardar objeto de id ${object.id}`);
-        }
-        return object;
-
+    createTable(){
+        return this.knex.schema.hasTable('messages').then( (exists) => {
+            if(!exists) {
+                return this.knex.schema.createTable('messages', table => {
+                    table.increments('id').primary();
+                    table.string('autor', 20).notNullable();
+                    table.string('msg', 50).notNullable();
+                    table.datetime('date').notNullable();
+                  })
+            }
+        })
+    }
+   
+    save(msg){
+        return this.knex('messages').insert(msg)
     }
 
-    async getAll() {
-        let objects;
-        try {
-            objects = await fs.promises.readFile(this.path, 'utf-8');
-        } catch (error) {
-            //throw new Error(`Error en leer archivo ${this.path}`);
-            console.log(`Error en leer archivo ${this.path}`);
-        }
-        if (objects.length == 0) return [];
-        objects = [...JSON.parse(objects)];
-        return objects;
+    getAll() {
+        return this.knex('messages').select('*')
+    }
+
+    close() {
+        this.knex.destroy();
     }
 }
 

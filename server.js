@@ -1,4 +1,6 @@
 //npm run start:dev
+const { startMessagesService } = require('./services/messageService')
+const { startProductsService } = require('./services/productService')
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const express = require('express')
@@ -20,7 +22,8 @@ app.use('/api/carritos',routerApiCart)
 app.all('*', (req, res) => {
     res.status(404).json({error:-2,descripcion:`Ruta ${req.originalUrl} metodo ${req.method} no implementada`});
 })
-
+startMessagesService()
+startProductsService()
 io.on('connection', socket => cnxEventController(socket, io))
 
 const PORT = 8080

@@ -13,12 +13,15 @@ const btnAddMessage = document.getElementById('sendBtn')
 btnAddMessage.addEventListener('click', event => {
     const autor = document.getElementById('inputAutor').value
     const msg = document.getElementById('inputMsg').value
+    const nowDate = new Date()
+    const date = nowDate.getFullYear() + "-" + nowDate.getDate() + "-" + (nowDate.getMonth()+1) + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds()
+    console.log(date)
     if(!autor){
         console.log("email no ingresado")
         return;
     }
     document.getElementById('inputMsg').value = "";
-    socket.emit('message', { autor, msg })
+    socket.emit('message', { autor, msg , date})
 })
 
 const btnAddProduct = document.getElementById('addProduct_btn')
@@ -37,7 +40,6 @@ async function showProducts(products) {
 }
 
 async function showMessages(messages) {
-    console.log("MOSTRARE MENSAJES", messages)
     const divMessages = document.getElementById('messages')
     divMessages.innerHTML = await buildTemplate('templates/chat.hbs', { messages });
 }
