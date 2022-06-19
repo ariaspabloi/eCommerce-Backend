@@ -1,6 +1,9 @@
-const { ProductDao } = require('../../persistence/ProductDao');
-const { mysql } = require('../../options/dbConnections')
-const productDao = new ProductDao(mysql);
+//const { ProductDao } = require('../../persistence/ProductDao');
+//const { mysql } = require('../../options/dbConnections')
+//const productDao = new ProductDao(mysql);
+
+const { productDao } = require("../../models/indexProduct");
+
 const testMSG = "API Test /";
 
 const productController = {

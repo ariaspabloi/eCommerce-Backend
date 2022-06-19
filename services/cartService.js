@@ -1,10 +1,11 @@
-const { CartDao } = require("../persistence/CartDao")
-const cartDao = new CartDao("carts.txt")
+//const { CartDao } = require("../persistence/CartDao")
+//const cartDao = new CartDao("carts.txt")
+const { cartDao } = require("../models/indexCart");
 
 async function newCartId() {
-    const cart = { products: [] };
-    await cartDao.save(cart)
-    return cart.id
+    const cart = { products: [] }
+    const saved = await cartDao.save(cart);
+    return {id:saved.insertedId}
 }
 
 async function addProduct(cartId, productId) {

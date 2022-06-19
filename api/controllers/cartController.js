@@ -10,7 +10,6 @@ const cartController = {
         let newId;
         try {
             newId = await newCartId();
-            console.log(newId);
             res.status(201).json(newId)
         } catch (error) {
             res.status(500).json({ error: error.message });
