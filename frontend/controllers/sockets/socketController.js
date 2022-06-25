@@ -2,7 +2,6 @@ const { getMessages, saveMessage } = require('../../../services/messageService')
 const { getProducts, saveProduct } = require('../../../services/productService')
 
 async function cnxEventController(socket, io) {
-    console.log("Nuevo cliente")
     const messages = await getMessages()
     const products = await getProducts()
     socket.emit('products', { products })

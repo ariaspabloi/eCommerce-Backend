@@ -2,14 +2,15 @@
   <h3>
     Mensajes
   </h3>
-  <div class="p-4 mt-3 bg-white border border-dark rounded">
+  <div class="p-4 mt-3 bg-white border border-dark rounded" style="word-wrap: break-word;">
     {{#each messages}}
       <p>
-        <span style="font-weight:bold;color: blue">{{this.autor}}</span>
+        <span style="font-weight:bold;color: blue">{{this.author.email}}</span>
         <span style="color: grey">[{{this.date}}]</span>
         :
-        <i style="color: green;">{{this.msg}}</i>
-      </p>
+        <i style="color: green;">{{this.text}}</i>
+        <img src="{{this.author.avatar}}" class="rounded-circle" style="width: 32px; height: 32px;">
+      </>
     {{/each}}
   </div>
 </div>

@@ -9,20 +9,22 @@ const cnxEventController = require('./frontend/controllers/sockets/socketControl
 const { routerApiCart } = require("./api/routers/routerApiCart.js");
 const { routerApiProduct } = require("./api/routers/routerApiProduct.js");
 const bodyParser = require('body-parser');
+const { routerApiMockup } = require('./api/routers/routerApiMockup');
 const app = express()
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
 app.use(express.static('public'))
-
 app.use(bodyParser.json());
+
 app.use('/', webRouter)
 app.use('/api/productos',routerApiProduct)
 app.use('/api/carritos',routerApiCart)
+app.use('/api/productos-test',routerApiMockup)
 app.all('*', (req, res) => {
     res.status(404).json({error:-2,descripcion:`Ruta ${req.originalUrl} metodo ${req.method} no implementada`});
 })
-startMessagesService()
+
 startProductsService()
 io.on('connection', socket => cnxEventController(socket, io))
 
