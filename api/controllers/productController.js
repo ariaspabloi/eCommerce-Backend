@@ -2,7 +2,7 @@
 //const { mysql } = require('../../options/dbConnections')
 //const productDao = new ProductDao(mysql);
 
-const { productDao } = require("../../models/indexProduct");
+const productDao = require("../../models/indexProduct");
 
 const testMSG = "API Test /";
 
@@ -45,7 +45,6 @@ const productController = {
             return res.json(product);
         } catch (error) {
             res.status(404).json({ error: error.message })
-            console.log("error",error.message)
         }
     },
     deleteProduct: async (req, res) => {

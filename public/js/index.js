@@ -6,10 +6,11 @@ const message = new schema.Entity('messages', {
     author: author
 });
 
+loginInfo()
 
 socket.on('messages', ({ messages }) => {
     const messagesDesnormalized = denormalize(messages.result, [message], messages.entities)
-    showCompressPercentage(messages,messagesDesnormalized)
+    showCompressPercentage(messages, messagesDesnormalized)
     showMessages(messagesDesnormalized)
 })
 
@@ -28,14 +29,14 @@ btnAddMessage.addEventListener('click', event => {
     const alias = document.getElementById('inputAlias').value
     const avatar = document.getElementById('inputAvatar').value
     const nowDate = new Date()
-    const date = nowDate.getFullYear() + "-" + nowDate.getDate() + "-" + (nowDate.getMonth()+1) + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds()
+    const date = nowDate.getFullYear() + "-" + nowDate.getDate() + "-" + (nowDate.getMonth() + 1) + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds()
     //console.log(date)
-    if(!email){
+    if (!email) {
         console.log("email no ingresado")
         return;
     }
     const msgToSend = {
-        author: {email,name,lastname,age,alias,avatar},
+        author: { email, name, lastname, age, alias, avatar },
         text: msg,
         date: date
     }
@@ -48,9 +49,21 @@ btnAddProduct.addEventListener('click', event => {
     const title = document.getElementById('title').value
     const price = document.getElementById('price').value
     const thumbnail = document.getElementById('thumbnail').value
-    socket.emit('product', { title,price,thumbnail })
+    socket.emit('product', { title, price, thumbnail })
 })
 
+
+async function loginInfo() {
+    const divLoginInfo = document.getElementById('loginInfo')
+    const user = (await axios.get('/logininfo')).data.user
+    if (user) {
+        const onclick = "location.href = './bye';"
+        divLoginInfo.innerHTML = `Logeado ${user} <button onclick="${onclick}">Deslogeate</button>`
+    } else {
+        const onclick = "location.href = './login';"
+        divLoginInfo.innerHTML = `<button onclick="${onclick}">Logeate!</button>`
+    }
+}
 
 async function showProducts(products) {
     const divProducts = document.getElementById('products')
@@ -63,21 +76,21 @@ async function showMessages(messages) {
     divMessages.innerHTML = await buildTemplate('templates/chat.hbs', { messages });
 }
 
-function showCompressPercentage(normalized,original){
+function showCompressPercentage(normalized, original) {
     const longN = JSON.stringify(normalized).length
     const longD = JSON.stringify(original).length
     const percentage = (longN * 100) / longD
     const text = "Compresion del " + percentage.toFixed(2) + '%'
     const percentageH2 = document.getElementById('percentage')
-    percentageH2.innerText=text
+    percentageH2.innerText = text
 }
 
-async function buildTemplate(url,data){
+async function buildTemplate(url, data) {
     const template = await fetchTemplate(url);
     const htmlGenerator = Handlebars.compile(template);
     return htmlGenerator(data)
 }
 
-function fetchTemplate(url){
+function fetchTemplate(url) {
     return fetch(url).then(res => res.text())
 }

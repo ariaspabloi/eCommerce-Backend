@@ -1,26 +1,15 @@
-const {MODE,mongodb} = require('../config.js')
+const { MODE, mongodb } = require('../config.js')
 
-
-let cartDao
-
-switch (MODE) {
-    case 'json':
-        //const { default: PersonasDaoArchivo } = await import('./PersonasDaoArchivo.js')
-        //personasDao = new PersonasDaoArchivo(config.fileSystem.path)
-        break
-    case 'firebase':
-        const CartDaoFirebase =  require('./daos/CartDaoFirebase.js')
-        cartDao = new CartDaoFirebase()
-        break
-    case 'mongodb':
+const cartDao = {
+    mongodb: () => {
         mongodb.connect()
-        const CartDaoMongoDb =  require('./daos/CartDaoMongoDb.js')
-        cartDao = new CartDaoMongoDb()
-        break
-    default:
-        //const { default: PersonasDaoMem } = await import('./PersonasDaoMem.js')
-        //personasDao = new PersonasDaoMem()
-        break
+        const CartDaoMongoDb = require('./daos/CartDaoMongoDb.js')
+        return new CartDaoMongoDb()
+    },
+    firebase: async() => {
+        const { default: PersonasDaoMem } = await import('./PersonasDaoMem.js')
+        return new PersonasDaoMem()
+    }
 }
 
-module.exports = {cartDao}
+module.exports = cartDao[MODE] 
