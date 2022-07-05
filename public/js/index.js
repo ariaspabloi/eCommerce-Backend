@@ -73,6 +73,7 @@ async function showProducts(products) {
 
 async function showMessages(messages) {
     const divMessages = document.getElementById('messages')
+    console.log(messages)
     divMessages.innerHTML = await buildTemplate('templates/chat.hbs', { messages });
 }
 

@@ -9,13 +9,31 @@ const getFirestoreDb = () => {
     const admin = require("firebase-admin");
     const serviceAccount = require("./db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json");
     admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+        credential: admin.credential.cert(serviceAccount)
     });
     return admin.firestore();
 }
 
+const mysql = {
+    client: 'mysql',
+    connection: {
+        user: 'root',
+        password: 'backendCH!',
+        host: 'localhost',
+        database: 'backendch'
+    }
+}
+
+const sqlite3 = {
+    client: 'sqlite3',
+    connection: {
+        filename: "./persistence/db.sqlite" //FIX PATH
+    },
+    useNullAsDefault: true
+}
+
 module.exports = {
     firebase: getFirestoreDb(),
-    mongodb :  getMongoDb(),
+    mongodb: getMongoDb(),
     MODE: 'mongodb'
 }

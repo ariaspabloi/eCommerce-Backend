@@ -1,9 +1,10 @@
-const { getMessages, saveMessage } = require('../../../services/messageService')
-const { getProducts, saveProduct } = require('../../../services/productService')
+const productDao = require('../../../models/indexProduct')
+const { getMessages, saveMessage } = require('../../../services/messageService.js')
+
 
 async function cnxEventController(socket, io) {
     const messages = await getMessages()
-    const products = await getProducts()
+    const products = await productDao.getAll()
     socket.emit('products', { products })
     socket.emit('messages', { messages })
     socket.on('product', p => productEventController(socket, io, p))
@@ -17,8 +18,8 @@ async function messageEventController(socket, io, msg) {
 }
 
 async function productEventController(socket, io, p) {
-    await saveProduct(p)
-    const products = await getProducts()
+    await productDao.save(p)
+    const products = await productDao.getAll()
     io.sockets.emit('products', { products })
 }
 

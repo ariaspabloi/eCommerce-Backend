@@ -1,16 +1,16 @@
-const {MODE,mongodb} = require('../config.js')
+const { MODE, mongodb } = require('../config.js')
 
 const productDao = {
-    firebase: async() => {
-        const ProductDaoFirebase =  require('./daos/ProductDaoFirebase.js')
-        return new ProductDaoFirebase()
-    },
     mongodb: () => {
         mongodb.connect()
-        const ProductsDaoMongoDb =  require('./daos/ProductDaoMongoDb.js')
-        return ProductsDaoMongoDb()
+        const ProductsDaoMongoDb = require('./daos/ProductDaoMongoDb.js')
+        return new ProductsDaoMongoDb()
+    },
+    firebase: async () => {
+        const ProductDaoFirebase = require('./daos/ProductDaoFirebase.js')
+        return new ProductDaoFirebase()
     }
 }
 
 
-module.exports = {productDao}
+module.exports = productDao[MODE]()

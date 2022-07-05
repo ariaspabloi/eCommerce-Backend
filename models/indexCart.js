@@ -6,10 +6,10 @@ const cartDao = {
         const CartDaoMongoDb = require('./daos/CartDaoMongoDb.js')
         return new CartDaoMongoDb()
     },
-    firebase: async() => {
-        const { default: PersonasDaoMem } = await import('./PersonasDaoMem.js')
-        return new PersonasDaoMem()
+    firebase: async () => {
+        const CartDaoFirebase = require('./daos/CartDaoFirebase.js')
+        return new CartDaoFirebase()
     }
 }
 
-module.exports = cartDao[MODE] 
+module.exports = cartDao[MODE]()
