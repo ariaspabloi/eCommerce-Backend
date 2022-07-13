@@ -1,4 +1,5 @@
 const {mongodb} = require("../../config")
+const {generateId} = require("../../util/helpers");
 const ObjectId = require('mongodb').ObjectId; 
 
 class MongoDbContainer{
@@ -11,11 +12,15 @@ class MongoDbContainer{
     }
 
     async getById(id){
-        return await this.collection.findOne({_id: new ObjectId(id)})
+        //return await this.collection.findOne({_id: new ObjectId(id)})
+        return await this.collection.findOne({id: id})
     }
 
     async save(object){
-        return await this.collection.insertOne(object)
+        //return await this.collection.insertOne({...object,id:generateId()})
+        object = {...object,id:generateId()};
+        const saved = await this.collection.insertOne(object);
+        return {...object,_id:saved._id}
     }
 
     async update(object,id){

@@ -5,9 +5,6 @@ const { onlyAdmin } = require('../middlewares/adminMiddleware')
 
 const routerApiProduct = new Router()
 
-routerApiProduct.use(express.json())
-routerApiProduct.use(express.urlencoded({ extended: true }))
-
 routerApiProduct.get('/', productController.getProducts)
 routerApiProduct.get('/:id', productController.getProduct)
 routerApiProduct.post('/', onlyAdmin, productController.postProduct)

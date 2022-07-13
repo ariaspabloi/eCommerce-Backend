@@ -4,8 +4,6 @@ const express = require('express')
 
 const routerApiMockup = new Router()
 
-routerApiMockup.use(express.json())
-routerApiMockup.use(express.urlencoded({ extended: true }))
 routerApiMockup.get('/', (req, res) => {
     try {
         res.json(generateProducts(5))
