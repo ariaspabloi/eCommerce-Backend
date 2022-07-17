@@ -12,6 +12,8 @@ const sessionMiddleware = require('./api/middlewares/sessionMiddleware')
 const { passportSessionHandler, passportMiddleware } = require("./api/middlewares/passportMiddleware");
 const routerAuth = require('./api/routers/routerAuth')
 const routerApiInfo = require('./api/routers/routerApiInfo')
+const routerInfo = require('./api/routers/routerInfo')
+const routerApiRandom = require('./api/routers/routerApiRandom')
 const requireAuthorization = require('./api/middlewares/authorizationMiddleware')
 
 /////////////////Server setup(with socket)
@@ -30,6 +32,8 @@ app.use(passportSessionHandler)
 
 /////////////////Routers
 app.use('/', webRouter)
+app.use('/info', routerInfo)
+app.use('/api/randoms', routerApiRandom)
 app.use('/auth', routerAuth)
 app.use('/api/info', requireAuthorization, routerApiInfo)
 app.use('/api/productos', requireAuthorization, routerApiProduct)
@@ -42,8 +46,18 @@ app.all('*', (req, res) => {
 /////////////////Socket setup
 io.on('connection', socket => cnxEventController(socket, io))
 
+
+/////////////////Get port by arguments
+//node src/server.js --port 8081
+const parseArgs = require('minimist')
+const options = {
+    default: {
+        port: 8080
+    }
+}
+const args = parseArgs(process.argv.slice(2), options)
+const PORT = args.port
 /////////////////Run Server
-const PORT = 8080
 const server = httpServer.listen(PORT, () => {
     console.log(`Server corriendo puerto: ${server.address().port}`)
 })
