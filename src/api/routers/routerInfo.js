@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const os = require('os')
 
 const routerInfo = new Router()
 const info = {
@@ -8,7 +9,8 @@ const info = {
     "memrss": process.memoryUsage().rss,
     "execPath": process.execPath,
     "pid": process.pid,
-    "projectpath": process.cwd()
+    "projectpath": process.cwd(),
+    "cpus": os.cpus().length
 }
 
 routerInfo.get('/', async (req, res) => {

@@ -16,48 +16,76 @@ const routerInfo = require('./api/routers/routerInfo')
 const routerApiRandom = require('./api/routers/routerApiRandom')
 const requireAuthorization = require('./api/middlewares/authorizationMiddleware')
 
-/////////////////Server setup(with socket)
-const app = express()
-const httpServer = createServer(app);
-const io = new Server(httpServer);
-
-/////////////////Middlewares
-app.use(express.static('./src/public'))
-app.use(bodyParser.json());
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(sessionMiddleware)
-app.use(passportMiddleware)
-app.use(passportSessionHandler)
-
-/////////////////Routers
-app.use('/', webRouter)
-app.use('/info', routerInfo)
-app.use('/api/randoms', routerApiRandom)
-app.use('/auth', routerAuth)
-app.use('/api/info', requireAuthorization, routerApiInfo)
-app.use('/api/productos', requireAuthorization, routerApiProduct)
-app.use('/api/carritos', requireAuthorization, routerApiCart)
-app.use('/api/productos-test', requireAuthorization, routerApiMockup)
-app.all('*', (req, res) => {
-    res.status(404).json({ error: -2, descripcion: `Ruta ${req.originalUrl} metodo ${req.method} no implementada` });
-})
-
-/////////////////Socket setup
-io.on('connection', socket => cnxEventController(socket, io))
-
-
-/////////////////Get port by arguments
+/////////////////Get arguments and cluster||fork
 //node src/server.js --port 8081
+////NODEMON
+//nodemon src/server.js --port 8080 --mode CLUSTER
+//nodemon src/server.js --port 8080 --mode FORK
+////FOREVER
+//forever start src/server.js --port 8080 --mode FORK
+//forever stopall
+////PM2
+//MODO FORK
+//pm2 start src/server.js --name="Server1" --watch -- --port 8082 --mode FORK
+//pm2 start src/server.js --name="Server2" --watch -- --port 8082 --mode FORK
+//MODO CLUSTER
+//pm2 start src/server.js --name="ServerX" --watch -i max -- --port 8082 --mode FORK
+//pm2 delete all
+
+const cluster = require ('cluster')
+const os = require('os')
+
 const parseArgs = require('minimist')
 const options = {
     default: {
-        port: 8080
+        port: 8080,
+        mode: "FORK"
     }
 }
 const args = parseArgs(process.argv.slice(2), options)
 const PORT = args.port
-/////////////////Run Server
-const server = httpServer.listen(PORT, () => {
-    console.log(`Server corriendo puerto: ${server.address().port}`)
-})
+const MODE = args.mode
+if(MODE==="CLUSTER" && cluster.isPrimary){
+    const numCPUs = os.cpus().length
+    for (let i = 0; i < numCPUs; i++) cluster.fork()
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`Worker ${worker.process.pid} died`)
+        cluster.fork()
+    })
+}else{
+
+    /////////////////Server setup(with socket)
+    const app = express()
+    const httpServer = createServer(app);
+    const io = new Server(httpServer);
+
+    /////////////////Middlewares
+    app.use(express.static('./src/public'))
+    app.use(bodyParser.json());
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
+    app.use(sessionMiddleware)
+    app.use(passportMiddleware)
+    app.use(passportSessionHandler)
+
+    /////////////////Routers
+    app.use('/', webRouter)
+    app.use('/info', routerInfo)
+    app.use('/api/randoms', routerApiRandom)
+    app.use('/auth', routerAuth)
+    app.use('/api/info', requireAuthorization, routerApiInfo)
+    app.use('/api/productos', requireAuthorization, routerApiProduct)
+    app.use('/api/carritos', requireAuthorization, routerApiCart)
+    app.use('/api/productos-test', requireAuthorization, routerApiMockup)
+    app.all('*', (req, res) => {
+        res.status(404).json({ error: -2, descripcion: `Ruta ${req.originalUrl} metodo ${req.method} no implementada` });
+    })
+
+    /////////////////Socket setup
+    io.on('connection', socket => cnxEventController(socket, io))
+
+    /////////////////Run Server
+    const server = httpServer.listen(PORT, () => {
+        console.log(`Server corriendo puerto : ${server.address().port}`)
+    })
+}

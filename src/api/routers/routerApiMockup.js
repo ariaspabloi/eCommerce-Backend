@@ -1,6 +1,5 @@
 const { faker } = require('@faker-js/faker')
 const { Router } = require('express')
-const express = require('express')
 
 const routerApiMockup = new Router()
 

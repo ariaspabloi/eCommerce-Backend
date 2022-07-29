@@ -24,11 +24,11 @@ class MongoDbContainer{
     }
 
     async update(object,id){
-        await this.collection.updateOne({_id:new ObjectId(id)},{ $set: object})
+        await this.collection.updateOne({id:id},{ $set: object})
     }
 
     async deleteById(id){
-        await this.collection.deleteOne({_id:new ObjectId(id)})
+        await this.collection.deleteOne({id:id})
     }
 
     async deleteAll(){

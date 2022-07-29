@@ -1,11 +1,9 @@
 const { firebase: db } = require("../../config")
-const { collection, getDocs } = 'firebase/firestore/lite'
 
 const asObj = doc => ({ id: doc.id, ...doc.data() })
 
 class FirebaseContainer {
     constructor(collectionName) {
-        this.collectionName = collectionName
         this.collection = db.collection(collectionName)
     }
 
@@ -21,7 +19,9 @@ class FirebaseContainer {
     }
 
     async save(object) {
-        return {insertedId:(await this.collection.add(object)).id}
+        //return {insertedId:(await this.collection.add(object)).id}
+        await this.collection.doc(object.id).create(object)
+        return {insertedId: object.id}
     }
 
     async update(object, id) {
@@ -29,7 +29,6 @@ class FirebaseContainer {
     }
 
     async deleteById(id) {
-        console.log("borrar",id)
         await this.collection.doc(id).delete()
     }
 

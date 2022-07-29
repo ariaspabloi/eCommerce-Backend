@@ -1,5 +1,3 @@
-//const { CartDao } = require("../persistence/CartDao")
-//const cartDao = new CartDao("carts.txt")
 const cartDao = require("../models/indexCart");
 
 async function newCartId() {

@@ -1,6 +1,4 @@
 const {Router} = require('express')
-const bodyParser = require("body-parser");
-const express = require("express");
 const { fork } = require('child_process')
 
 const routerApiRandom = new Router()
