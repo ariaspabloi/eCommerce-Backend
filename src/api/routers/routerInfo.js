@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const os = require('os')
+const compression =  require('compression')
 
 const routerInfo = new Router()
 const info = {
@@ -13,7 +14,10 @@ const info = {
     "cpus": os.cpus().length
 }
 
-routerInfo.get('/', async (req, res) => {
+routerInfo.get('/normal', async (req, res) => {
+    res.json(info)
+})
+routerInfo.get('/compressed', compression(),async (req, res) => {
     res.json(info)
 })
 

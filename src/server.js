@@ -15,6 +15,8 @@ const routerApiInfo = require('./api/routers/routerApiInfo')
 const routerInfo = require('./api/routers/routerInfo')
 const routerApiRandom = require('./api/routers/routerApiRandom')
 const requireAuthorization = require('./api/middlewares/authorizationMiddleware')
+const loggerMiddleware = require('./api/middlewares/loggerMiddleware')
+const logger = require('./util/logger')
 
 /////////////////Get arguments and cluster||fork
 //node src/server.js --port 8081
@@ -57,17 +59,17 @@ if(MODE==="CLUSTER" && cluster.isPrimary){
     /////////////////Server setup(with socket)
     const app = express()
     const httpServer = createServer(app);
-    const io = new Server(httpServer);
+    const io = new Server(httpServer)
 
     /////////////////Middlewares
     app.use(express.static('./src/public'))
     app.use(bodyParser.json());
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
+    app.use(loggerMiddleware)
     app.use(sessionMiddleware)
     app.use(passportMiddleware)
     app.use(passportSessionHandler)
-
     /////////////////Routers
     app.use('/', webRouter)
     app.use('/info', routerInfo)
@@ -78,6 +80,7 @@ if(MODE==="CLUSTER" && cluster.isPrimary){
     app.use('/api/carritos', requireAuthorization, routerApiCart)
     app.use('/api/productos-test', requireAuthorization, routerApiMockup)
     app.all('*', (req, res) => {
+        logger.warn(`Ruta ${req.originalUrl} metodo ${req.method} no implementada`)
         res.status(404).json({ error: -2, descripcion: `Ruta ${req.originalUrl} metodo ${req.method} no implementada` });
     })
 
