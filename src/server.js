@@ -7,7 +7,7 @@ const cnxEventController = require('./frontend/controllers/sockets/socketControl
 const { routerApiCart } = require("./api/routers/routerApiCart.js");
 const { routerApiProduct } = require("./api/routers/routerApiProduct.js");
 const bodyParser = require('body-parser');
-const { routerApiMockup } = require('./api/routers/routerApiMockup')
+//const { routerApiMockup } = require('./api/routers/routerApiMockup')
 const sessionMiddleware = require('./api/middlewares/sessionMiddleware')
 const { passportSessionHandler, passportMiddleware } = require("./api/middlewares/passportMiddleware");
 const routerAuth = require('./api/routers/routerAuth')
@@ -78,7 +78,7 @@ if(MODE==="CLUSTER" && cluster.isPrimary){
     app.use('/api/info', requireAuthorization, routerApiInfo)
     app.use('/api/productos', requireAuthorization, routerApiProduct)
     app.use('/api/carritos', requireAuthorization, routerApiCart)
-    app.use('/api/productos-test', requireAuthorization, routerApiMockup)
+    //app.use('/api/productos-test', requireAuthorization, routerApiMockup)
     app.all('*', (req, res) => {
         logger.warn(`Ruta ${req.originalUrl} metodo ${req.method} no implementada`)
         res.status(404).json({ error: -2, descripcion: `Ruta ${req.originalUrl} metodo ${req.method} no implementada` });
