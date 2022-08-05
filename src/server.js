@@ -46,7 +46,7 @@ const options = {
     }
 }
 const args = parseArgs(process.argv.slice(2), options)
-const PORT = args.port
+const PORT = process.env.PORT || args.port
 const MODE = args.mode
 if(MODE==="CLUSTER" && cluster.isPrimary){
     const numCPUs = os.cpus().length
