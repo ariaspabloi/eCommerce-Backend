@@ -17,7 +17,6 @@ const routerApiRandom = require('./api/routers/routerApiRandom')
 const requireAuthorization = require('./api/middlewares/authorizationMiddleware')
 const loggerMiddleware = require('./api/middlewares/loggerMiddleware')
 const logger = require('./util/logger')
-const http = require('http');
 
 
 /////////////////Get arguments and cluster||fork
@@ -92,12 +91,5 @@ if(MODE==="CLUSTER" && cluster.isPrimary){
     /////////////////Run Server
     const server = httpServer.listen(PORT, () => {
         console.log(`Server corriendo puerto : ${server.address().port}`)
-        //Get my ip
-        //To add in Atlas MongoDb security list
-        http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
-            resp.on('data', function(ip) {
-                console.log("My public IP address is: " + ip);
-            });
-        });
     })
 }
