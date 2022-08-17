@@ -4,6 +4,7 @@ const clienteMail = require('../messageSenders/emailSender/index')
 const {mailAdmin} = require('../config')
 const path = require('path');
 const Resize = require('../util/Resize')
+const {validPassword} = require("../util/helpers");
 
 const registerUser = async (user) => {
     userDao.validateUniqueEmail(user.email)
@@ -18,8 +19,8 @@ const authenticateUser = async (username,password)=>{
     let user;
     try{
         user = await userDao.getByEmail(username)
-        if(user.password !== password) throw Error()
-        return user;
+        if(!(await validPassword(password,user.password))) throw Error()
+        return user
     }catch (error){
         throw error;
     }

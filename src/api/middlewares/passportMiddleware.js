@@ -2,12 +2,14 @@ const passport = require('passport')
 const {Strategy} = require('passport-local')
 const userDao = require('../../models/indexUser')
 const {registerUser, authenticateUser} = require('../../services/userService')
+const {generateHash} = require("../../util/helpers");
 
 passport.use('register', new Strategy({
     usernameField: 'email',
     passReqToCallback: true
 }, (req, username, password, done) => {
     try {
+        req.body.password = generateHash(req.body.password)
         registerUser(req.body).then(user => done(null, user))
     } catch (error) {
         done(error)

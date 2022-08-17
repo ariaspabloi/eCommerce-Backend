@@ -72,3 +72,14 @@
 {"level":"warn","message":"Ruta /api/uploads metodo POST no implementada"}
 {"level":"warn","message":"Ruta /favicon.ico metodo GET no implementada"}
 {"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}

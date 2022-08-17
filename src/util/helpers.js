@@ -1,6 +1,9 @@
+const bcrypt = require('bcrypt')
 let random = 0;
 const generateId = () => {
     random = (random+1)%9+1
     return Date.now()+(10000000000000*random);
 }
-module.exports = {generateId}
+const generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10),null)
+const validPassword = async (lpw,password) => await bcrypt.compare(lpw,password)
+module.exports = {generateId,generateHash,validPassword}
