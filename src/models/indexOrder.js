@@ -1,10 +1,10 @@
 const { DBMODE, mongodb } = require('../config.js')
 
-const userDao = {
+const orderDao = {
     mongodb: () => {
         mongodb.connect()
-        const UserDaoMongoDb = require('./daos/UserDaoMongoDb.js')
-        return new UserDaoMongoDb()
+        const OrderDaoMongoDb = require('./daos/OrderDaoMongoDb.js')
+        return new OrderDaoMongoDb()
     },
     firebase: async () => {
         //const ProductDaoFirebase = require('./daos/ProductDaoFirebase.js')
@@ -13,4 +13,4 @@ const userDao = {
 }
 
 
-module.exports = userDao[DBMODE]()
+module.exports = orderDao[DBMODE]()

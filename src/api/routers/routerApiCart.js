@@ -2,11 +2,10 @@ const { Router } = require('express')
 const { cartController } = require('../controllers/cartController')
 
 const routerApiCart = new Router()
-
-routerApiCart.post('/',cartController.postNewCart)
-routerApiCart.post('/:cartId/productos',cartController.postAddProduct)
-routerApiCart.get('/:cartId/productos',cartController.getProducts)
-routerApiCart.delete('/:cartId/productos/:productId',cartController.deleteProduct)
-routerApiCart.delete('/:cartId',cartController.deleteEmptyCart)
+//id del carrito en la sesion
+routerApiCart.post('/',cartController.postAddProduct)
+routerApiCart.get('/',cartController.getProducts)
+routerApiCart.delete('/:productId',cartController.deleteProduct)
+routerApiCart.delete('/empty',cartController.deleteEmptyCart)
 
 module.exports = { routerApiCart }

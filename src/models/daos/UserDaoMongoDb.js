@@ -6,11 +6,11 @@ class UserDaoMongo extends MongoDbContainer {
         super('users', 'db')
     }
 
-    async getByUsername(username){
-        return await this.collection.findOne({username: username})
+    async getByEmail(email){
+        return await this.collection.findOne({email: email})
     }
-    async validateUniqueUsername(username) {
-        const user = await this.getByUsername(username)
+    async validateUniqueEmail(email) {
+        const user = await this.getByEmail(email)
         if (user) throw new Error('el nombre de usuario no está disponible')
     }
 }

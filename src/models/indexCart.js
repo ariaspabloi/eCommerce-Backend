@@ -1,4 +1,4 @@
-const { MODE, mongodb } = require('../config.js')
+const { DBMODE, mongodb } = require('../config.js')
 
 const cartDao = {
     mongodb: () => {
@@ -12,4 +12,4 @@ const cartDao = {
     }
 }
 
-module.exports = cartDao[MODE]()
+module.exports = cartDao[DBMODE]()

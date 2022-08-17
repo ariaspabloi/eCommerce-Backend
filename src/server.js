@@ -14,9 +14,13 @@ const routerAuth = require('./api/routers/routerAuth')
 const routerApiInfo = require('./api/routers/routerApiInfo')
 const routerInfo = require('./api/routers/routerInfo')
 const routerApiRandom = require('./api/routers/routerApiRandom')
+const routerApiUser = require('./api/routers/routerApiUser')
+const routerApiOrder = require('./api/routers/routerApiOrder')
+const routerApiUpload = require('./api/routers/routerApiUpload')
 const requireAuthorization = require('./api/middlewares/authorizationMiddleware')
 const loggerMiddleware = require('./api/middlewares/loggerMiddleware')
 const logger = require('./util/logger')
+const {mode} = require('./config')
 
 
 /////////////////Get arguments and cluster||fork
@@ -41,14 +45,12 @@ const os = require('os')
 const parseArgs = require('minimist')
 const options = {
     default: {
-        port: 8080,
-        mode: "FORK"
+        port: 8080
     }
 }
 const args = parseArgs(process.argv.slice(2), options)
 const PORT = process.env.PORT || args.port
-const MODE = args.mode
-if(MODE==="CLUSTER" && cluster.isPrimary){
+if(mode==="CLUSTER" && cluster.isPrimary){
     const numCPUs = os.cpus().length
     for (let i = 0; i < numCPUs; i++) cluster.fork()
     cluster.on('exit', (worker, code, signal) => {
@@ -65,6 +67,7 @@ if(MODE==="CLUSTER" && cluster.isPrimary){
     /////////////////Middlewares
     app.use(express.static('./src/public'))
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}))
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
     app.use(loggerMiddleware)
@@ -75,10 +78,13 @@ if(MODE==="CLUSTER" && cluster.isPrimary){
     app.use('/', webRouter)
     app.use('/info', routerInfo)
     app.use('/api/randoms', routerApiRandom)
-    app.use('/auth', routerAuth)
+    app.use('/api/upload', routerApiUpload)
+    app.use('/api/users',routerApiUser)
+    app.use('/', routerAuth)
     app.use('/api/info', requireAuthorization, routerApiInfo)
-    app.use('/api/productos', requireAuthorization, routerApiProduct)
-    app.use('/api/carritos', requireAuthorization, routerApiCart)
+    app.use('/api/products', routerApiProduct)
+    app.use('/api/orders', routerApiOrder)
+    app.use('/api/shoppingcartproducts', requireAuthorization, routerApiCart)
     //app.use('/api/productos-test', requireAuthorization, routerApiMockup)
     app.all('*', (req, res) => {
         logger.warn(`Ruta ${req.originalUrl} metodo ${req.method} no implementada`)

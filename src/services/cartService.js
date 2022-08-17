@@ -1,9 +1,10 @@
 const cartDao = require("../models/indexCart");
+const {ObjectId} = require("mongodb");
 
-async function newCartId() {
-    const cart = { products: [] }
+async function newCartId(_id) {
+    const cart = { products: [], _id: new ObjectId(_id) }
     const saved = await cartDao.save(cart);
-    return {id:saved.insertedId}
+    return _id
 }
 
 async function addProduct(cartId, productId) {

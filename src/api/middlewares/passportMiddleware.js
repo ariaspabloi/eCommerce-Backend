@@ -4,6 +4,7 @@ const userDao = require('../../models/indexUser')
 const {registerUser, authenticateUser} = require('../../services/userService')
 
 passport.use('register', new Strategy({
+    usernameField: 'email',
     passReqToCallback: true
 }, (req, username, password, done) => {
     try {
@@ -13,7 +14,9 @@ passport.use('register', new Strategy({
     }
 }))
 
-passport.use('login', new Strategy((username, password, done) => {
+passport.use('login', new Strategy({
+    usernameField: 'email'
+},(username, password, done) => {
     try {
         authenticateUser(username, password).then(user => done(null, user))
     } catch (error) {
@@ -27,8 +30,9 @@ const passportMiddleware = passport.initialize()
 ///////////////////Serializar
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user._id)
 })
+
 
 passport.deserializeUser((id, done) => {
     try {

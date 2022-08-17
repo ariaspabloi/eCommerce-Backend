@@ -12,23 +12,23 @@ class MongoDbContainer{
     }
 
     async getById(id){
-        //return await this.collection.findOne({_id: new ObjectId(id)})
-        return await this.collection.findOne({id: id})
+        return await this.collection.findOne({_id: new ObjectId(id)})
+        //return await this.collection.findOne({id: id})
     }
 
     async save(object){
         //return await this.collection.insertOne({...object,id:generateId()})
-        object = {...object,id:generateId()};
+        //object = {...object,id:generateId()};
         const saved = await this.collection.insertOne(object);
-        return {...object,_id:saved._id}
+        return {...object,_id:saved.insertedId.toString()}
     }
 
     async update(object,id){
-        await this.collection.updateOne({id:id},{ $set: object})
+        await this.collection.updateOne({_id:new ObjectId(id)},{ $set: object})
     }
 
     async deleteById(id){
-        await this.collection.deleteOne({id:id})
+        await this.collection.deleteOne({_id:new ObjectId(id)})
     }
 
     async deleteAll(){

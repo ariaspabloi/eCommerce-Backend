@@ -4,3 +4,71 @@
 {"level":"warn","message":"Ruta /asdsad metodo GET no implementada"}
 {"level":"error","message":"Error postProducts"}
 {"level":"warn","message":"Ruta /favicon.ico metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failLogin metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failLogin metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failLogin metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo GET no implementada"}
+{"level":"warn","message":"Ruta /api/products metodo GET no implementada"}
+{"level":"warn","message":"Ruta /api/products metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /api/shoppingcartproducts metodo POST no implementada"}
+{"level":"warn","message":"Ruta /api/shoppingcartproducts metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /api/orders metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"error","message":"Error postOrder"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"error","message":"Error postOrder"}
+{"level":"error","message":"Error postOrder"}
+{"level":"error","message":"Error postOrder"}
+{"level":"error","message":"Error postOrder"}
+{"level":"error","message":"Error postOrder"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/failRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /api/uploads metodo POST no implementada"}
+{"level":"warn","message":"Ruta /favicon.ico metodo GET no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
