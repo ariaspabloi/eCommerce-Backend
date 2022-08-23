@@ -1,4 +1,4 @@
-const { addProduct, getCartProducts, deleteProduct, emptyCart } = require('../../services/cartService')
+const {addProduct, getCartProducts, deleteProduct, emptyCart} = require('../../services/cartService')
 
 const testMSG = "API Test /";
 
@@ -8,11 +8,10 @@ const cartController = {
     },
     postAddProduct: async (req, res) => {
         try {
-            const cartId = (await req.user)._id
-            console.log("cartID",cartId)
+            const cartId = (await req.user)._id.toString()
             await addProduct(cartId, req.body.productId)
         } catch (error) {
-            res.status(404).json({ error: error.message });
+            res.status(404).json({error: error.message});
         }
         res.status(201).json()
     },
@@ -22,7 +21,7 @@ const cartController = {
             const products = await getCartProducts(cartId)
             res.status(201).json(products)
         } catch (error) {
-            res.status(404).json({ error: error.message });
+            res.status(404).json({error: error.message});
         }
     },
     deleteProduct: async (req, res) => {
@@ -31,7 +30,7 @@ const cartController = {
             const productId = req.params.productId
             await deleteProduct(cartId, productId)
         } catch (error) {
-            res.status(404).json({ error: error.message });
+            res.status(404).json({error: error.message});
         }
         res.status(201).json()
     },
@@ -41,9 +40,9 @@ const cartController = {
             await emptyCart(cartId)
             res.status(204).json()
         } catch (error) {
-            res.status(404).json({ error: error.message });
+            res.status(404).json({error: error.message});
         }
     }
 }
 
-module.exports = { cartController }
+module.exports = {cartController}

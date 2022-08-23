@@ -1,7 +1,6 @@
 const passport = require('passport')
 const {Strategy} = require('passport-local')
-const userDao = require('../../models/indexUser')
-const {registerUser, authenticateUser} = require('../../services/userService')
+const {registerUser, authenticateUser, getUserById} = require('../../services/userService')
 const {generateHash} = require("../../util/helpers");
 
 passport.use('register', new Strategy({
@@ -18,7 +17,7 @@ passport.use('register', new Strategy({
 
 passport.use('login', new Strategy({
     usernameField: 'email'
-},(username, password, done) => {
+}, (username, password, done) => {
     try {
         authenticateUser(username, password).then(user => done(null, user))
     } catch (error) {
@@ -32,13 +31,13 @@ const passportMiddleware = passport.initialize()
 ///////////////////Serializar
 
 passport.serializeUser((user, done) => {
-    done(null, user._id)
+    done(null, user._id.toString())
 })
 
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser(async (id, done) => {
     try {
-        const user = userDao.getById(id)
+        const user = await getUserById(id)
         done(null, user)
     } catch (error) {
         done(error)

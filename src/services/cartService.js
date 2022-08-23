@@ -1,9 +1,8 @@
-const cartDao = require("../models/indexCart");
-const {ObjectId} = require("mongodb");
+const cartDao = require("../models/indexCart")
 
 async function newCartId(_id) {
-    const cart = { products: [], _id: new ObjectId(_id) }
-    const saved = await cartDao.save(cart);
+    const cart = {products: [], _id}
+    await cartDao.save(cart);
     return _id
 }
 
@@ -51,4 +50,9 @@ async function emptyCart(cartId) {
     }
 }
 
-module.exports = { newCartId, addProduct, getCartProducts, deleteProduct, emptyCart }
+async function getCartById(id) {
+    return await cartDao.getById(id)
+}
+
+
+module.exports = {newCartId, addProduct, getCartProducts, deleteProduct, emptyCart}

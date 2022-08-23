@@ -83,3 +83,32 @@
 {"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
 {"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
 {"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"error","message":"Error getProducts"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"error","message":"Error getProducts"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"error","message":"Error postOrder"}
+{"level":"error","message":"Error getOrder"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successRegister metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}
+{"level":"warn","message":"Ruta /logout metodo POST no implementada"}
+{"level":"warn","message":"Ruta /auth/successLogin metodo POST no implementada"}

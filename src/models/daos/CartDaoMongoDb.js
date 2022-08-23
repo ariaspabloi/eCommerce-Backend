@@ -1,4 +1,4 @@
-const { MongoDbContainer } = require("../containers/MongoDbContainer")
+const {MongoDbContainer} = require("../containers/MongoDbContainer")
 
 class CartDaoMongoDb extends MongoDbContainer {
     constructor() {

@@ -3,7 +3,7 @@ const path = require('path')
 
 //const __dirname = process.cwd()
 dotenv.config({
-    path: path.resolve(__dirname, 'config.env'),
+    path: path.resolve(__dirname, '../.env'),
 })
 
 const mode = process.env.MODE
