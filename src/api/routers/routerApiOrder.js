@@ -1,6 +1,6 @@
-const { Router } = require('express')
-const { orderController } = require('../controllers/orderController')
-const requireAuthorization = require('../middlewares/authorizationMiddleware')
+import {Router} from 'express';
+import {orderController} from '../controllers/orderController.js';
+import requireAuthorization from '../middlewares/authorizationMiddleware.js';
 
 const routerApiOrder = new Router()
 
@@ -8,4 +8,4 @@ routerApiOrder.get('/', requireAuthorization, orderController.getOrder)
 routerApiOrder.post('/', requireAuthorization, orderController.postOrder)
 
 
-module.exports = routerApiOrder
+export default routerApiOrder;

@@ -1,5 +1,5 @@
-const WhatsappSender = require('./TwilioWhatsappSender.js')
-const { twilioAccountSid, twilioAuthToken, twilioWhatsappPhoneNumber } = require('../../config.js')
+import WhatsappSender from './TwilioWhatsappSender.js';
+import { twilioAccountSid, twilioAuthToken, twilioWhatsappPhoneNumber } from '../../config.js';
 
 const credenciales = {
     numero: twilioWhatsappPhoneNumber,
@@ -7,4 +7,4 @@ const credenciales = {
     contrasenia: twilioAuthToken
 }
 const clienteWsp = new WhatsappSender(credenciales)
-module.exports = clienteWsp
+export default clienteWsp;

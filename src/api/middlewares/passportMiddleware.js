@@ -1,7 +1,7 @@
-const passport = require('passport')
-const {Strategy} = require('passport-local')
-const {registerUser, authenticateUser, getUserById} = require('../../services/userService')
-const {generateHash} = require("../../util/helpers");
+import passport from 'passport';
+import {Strategy} from 'passport-local';
+import {registerUser, authenticateUser, getUserById} from '../../services/userService.js';
+import {generateHash} from '../../util/helpers.js';
 
 passport.use('register', new Strategy({
     usernameField: 'email',
@@ -44,4 +44,4 @@ passport.deserializeUser(async (id, done) => {
     }
 })
 const passportSessionHandler = passport.session()
-module.exports = {passportSessionHandler, passportMiddleware}
+export {passportSessionHandler, passportMiddleware};

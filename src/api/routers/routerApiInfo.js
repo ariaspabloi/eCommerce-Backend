@@ -1,8 +1,9 @@
-const { Router } = require('express')
-const {infoGetController} = require('../controllers/infoController')
-const requireAuthorization = require('../middlewares/authorizationMiddleware')
+import {Router} from 'express';
+import {infoGetController} from '../controllers/infoController.js';
+import requireAuthorization from '../middlewares/authorizationMiddleware.js';
+
 const routerApiInfo = new Router()
 
-routerApiInfo.get('/', requireAuthorization ,infoGetController)
+routerApiInfo.get('/', requireAuthorization, infoGetController)
 
-module.exports = routerApiInfo
+export default routerApiInfo;

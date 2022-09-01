@@ -1,6 +1,6 @@
-const twilio = require('twilio')
+import twilio from 'twilio';
 
-module.exports = class TwilioSender {
+export default class TwilioSender {
     constructor({ numero, usuario, contrasenia }) {
         this.numero = numero
         this.cliente = twilio(usuario, contrasenia)
@@ -22,5 +22,5 @@ module.exports = class TwilioSender {
             throw customError
         }
     }
-}
+};
 

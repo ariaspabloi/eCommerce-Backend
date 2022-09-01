@@ -1,5 +1,5 @@
-const {Router} = require('express')
-const { fork } = require('child_process')
+import { Router } from 'express';
+import { fork } from 'child_process';
 
 const routerApiRandom = new Router()
 
@@ -15,4 +15,4 @@ routerApiRandom.get('/', (req, res) => {
 })
 
 
-module.exports = routerApiRandom
+export default routerApiRandom;

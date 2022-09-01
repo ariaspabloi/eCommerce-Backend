@@ -1,6 +1,12 @@
-const dotenv = require('dotenv')
-const path = require('path')
+import dotenv from 'dotenv';
+import path from 'path';
+import {fileURLToPath} from 'url';
+import {MongoClient, ServerApiVersion} from 'mongodb';
+import admin from "firebase-admin";
+import serviceAccount from "./db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json" assert {type: 'json'}
 
+const __dirname = path.dirname(fileURLToPath(
+    import.meta.url));
 //const __dirname = process.cwd()
 dotenv.config({
     path: path.resolve(__dirname, '../.env'),
@@ -25,15 +31,17 @@ const mailAdmin = process.env.MAIL_ADMIN
 const whatsappAdmin = process.env.WHATSAPP_ADMIN
 
 //MongoDB connection settings
-const getMongoDb = () => {
-    const { MongoClient, ServerApiVersion } = require('mongodb');
+function getMongoDb() {
     const uri = `mongodb+srv://${mongodbUser}:${mongodbPassword}@cluster0.ot66qlp.mongodb.net/?retryWrites=true&w=majority`
-    return client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+    return new MongoClient(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverApi: ServerApiVersion.v1
+    });
 }
+
 //Firebase connection settings
-const getFirestoreDb = () => {
-    const admin = require("firebase-admin");
-    const serviceAccount = require("./db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json");
+function getFirestoreDb() {
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
@@ -57,12 +65,12 @@ const sqlite3 = {
     },
     useNullAsDefault: true
 }
-
-module.exports = {
+const DBMODE = 'mongodb'
+export {
     mode,
-    firebase: getFirestoreDb(),
-    mongodb: getMongoDb(),
-    DBMODE: 'mongodb',
+    getFirestoreDb as firebase,
+    getMongoDb as mongodb,
+    DBMODE,
     nodemailerUser,
     nodemailerPass,
     twilioAccountSid,
@@ -72,4 +80,4 @@ module.exports = {
     smsAdmin,
     mailAdmin,
     whatsappAdmin
-}
+};

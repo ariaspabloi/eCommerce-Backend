@@ -1,8 +1,8 @@
-const TwilioSender = require('../TwilioSender.js')
+import TwilioSender from '../TwilioSender.js';
 
-module.exports = class TwilioWhatsappSender extends TwilioSender {
+export default class TwilioWhatsappSender extends TwilioSender {
     constructor(options) {
         super(options)
     }
-}
+};
 

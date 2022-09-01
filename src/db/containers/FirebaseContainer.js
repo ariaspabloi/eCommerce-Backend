@@ -1,8 +1,8 @@
-const { firebase: db } = require("../../config")
+import {firebase as db} from '../../config.js';
 
-const asObj = doc => ({ id: doc.id, ...doc.data() })
+const asObj = doc => ({id: doc.id, ...doc.data()})
 
-class FirebaseContainer {
+export class FirebaseContainer {
     constructor(collectionName) {
         this.collection = db.collection(collectionName)
     }
@@ -40,5 +40,3 @@ class FirebaseContainer {
         })
     }
 }
-
-module.exports = { FirebaseContainer }

@@ -1,8 +1,8 @@
-const {addProduct, getCartProducts, deleteProduct, emptyCart} = require('../../services/cartService')
+import {addProduct, getCartProducts, deleteProduct, emptyCart} from '../../services/cartService.js';
 
 const testMSG = "API Test /";
 
-const cartController = {
+export const cartController = {
     info: (req, res) => {
         res.json(testMSG)
     },
@@ -44,5 +44,3 @@ const cartController = {
         }
     }
 }
-
-module.exports = {cartController}

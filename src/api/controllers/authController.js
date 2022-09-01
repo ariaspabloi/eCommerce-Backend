@@ -1,4 +1,4 @@
-const passport = require('passport')
+import passport from 'passport';
 
 const registerController = passport.authenticate('register', {
     successRedirect: '/auth/successRegister', failureRedirect: '/auth/failRegister',
@@ -35,7 +35,7 @@ const logoutController = async (req, res) => {
     res.sendStatus(200)
 }
 
-module.exports = {
+export {
     registerController,
     loginController,
     successRegisterController,
@@ -43,4 +43,4 @@ module.exports = {
     successLoginController,
     failLoginController,
     logoutController
-}
+};

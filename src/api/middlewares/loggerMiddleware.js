@@ -1,4 +1,4 @@
-const logger = require('../../util/logger')
+import logger from '../../util/logger.js';
 
 const loggerMiddleware = (req, res, next) => {
     const log = `Ruta ${req.originalUrl} metodo ${req.method}`
@@ -6,4 +6,4 @@ const loggerMiddleware = (req, res, next) => {
     next()
 }
 
-module.exports = loggerMiddleware
+export default loggerMiddleware;

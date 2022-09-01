@@ -1,34 +1,37 @@
-const userDao = require('../models/indexUser')
-const {newCartId} = require('./cartService')
-const clienteMail = require('../messageSenders/emailSender/index')
-const {mailAdmin} = require('../config')
-const path = require('path');
-const Resize = require('../util/Resize')
-const {validPassword} = require("../util/helpers");
+import userDao from '../db/indexUser.js';
+import {newCartId} from './cartService.js';
+import clienteMail from '../messageSenders/emailSender/index.js';
+import {mailAdmin} from '../config.js';
+import path from 'path';
+import Resize from '../util/Resize.js';
+import {validPassword} from '../util/helpers.js';
+import User from '../models/User.js'
 
 
-const registerUser = async (user) => {
-    if (await userDao.getByEmail(user.email)) throw Error('email ya registrado')
-    if (!user.email || !user.password) throw Error('falta el campo obligatorio')
-    user = await userDao.save(user)
-    await newCartId(user._id)
+const registerUser = async (userData) => {
+    if (await userDao.getByEmail(userData.email)) throw Error('email ya registrado')
+    if (!userData.email || !userData.password) throw Error('falta el campo obligatorio')
+    const user = new User(userData)
+    const insertedUser = await userDao.save(user.dto())
+    await newCartId(insertedUser._id)
     //await clienteMail.enviar({asunto: 'Nuevo registro', destinatario: mailAdmin, mensaje: `Registro de ${user.email}`})
-    return user
+    return insertedUser
 }
 
 const authenticateUser = async (username, password) => {
     try {
         const user = await userDao.getByEmail(username)
         if (!(await validPassword(password, user.password))) throw Error('contrasenia incorrecta')
-        return user
+        return new User(user)
     } catch (error) {
         throw error;
     }
 }
 
 const getUserById = async (id) => {
-    return userDao.getById(id)
+    const user = await userDao.getById(id)
+    return new User(user)
 }
 
 
-module.exports = {registerUser, authenticateUser, getUserById}
+export {registerUser, authenticateUser, getUserById};

@@ -1,8 +1,9 @@
-const { Router } = require('express')
-const path = require("path");
-const Resize = require("../../util/Resize");
+import {Router} from 'express';
+import path from 'path';
+import Resize from '../../util/Resize.js';
+
 const routerApiUpload = new Router()
-const upload = require("../middlewares/uploadMiddleware")
+import upload from '../middlewares/uploadMiddleware.js';
 
 routerApiUpload.post('/', upload.single('image'), async function (req, res) {
     const __dirname = process.cwd()
@@ -13,7 +14,7 @@ routerApiUpload.post('/', upload.single('image'), async function (req, res) {
         res.status(401).json({error: 'Please provide an image'});
     }
     const filename = await fileUpload.save(req.file.buffer);
-    return res.status(200).json({ link: `${req.protocol}://${req.get('host')}/images/${filename}`});
+    return res.status(200).json({link: `${req.protocol}://${req.get('host')}/images/${filename}`});
 });
 
-module.exports = routerApiUpload
+export default routerApiUpload;

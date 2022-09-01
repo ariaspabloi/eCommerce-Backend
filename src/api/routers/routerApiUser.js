@@ -1,10 +1,5 @@
-const {Router} = require('express')
-
-const {
-    failRegisterController,
-    successRegisterController,
-    registerController
-} = require('../controllers/authController.js')
+import { Router } from 'express';
+import { failRegisterController, successRegisterController, registerController } from '../controllers/authController.js';
 
 const routerApiUser = new Router()
 
@@ -13,4 +8,4 @@ routerApiUser.post('/', registerController)
 routerApiUser.post('/successRegister', successRegisterController)
 routerApiUser.post('/failRegister', failRegisterController)
 
-module.exports = routerApiUser
+export default routerApiUser;

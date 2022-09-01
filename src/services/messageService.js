@@ -1,9 +1,11 @@
-const normalizr = require("normalizr")
+import normalizr from 'normalizr';
+
 const normalize = normalizr.normalize
 const schema = normalizr.schema
-const MessageDaoMongoDb = require('../models/daos/MessageDaoMongoDb')
+import MessageDaoMongoDb from '../db/daos/MessageDaoMongoDb.js';
+
 const messageDao = new MessageDaoMongoDb()
-const author = new schema.Entity('authors', {}, { idAttribute: 'email' });
+const author = new schema.Entity('authors', {}, {idAttribute: 'email'});
 const message = new schema.Entity('messages', {
     author: author
 });
@@ -18,6 +20,4 @@ async function saveMessage(msg) {
 }
 
 
-
-
-module.exports = { getMessages, saveMessage }
+export {getMessages, saveMessage};

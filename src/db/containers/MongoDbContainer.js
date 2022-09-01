@@ -1,10 +1,9 @@
-const {mongodb} = require("../../config")
-const {generateId} = require("../../util/helpers");
-const ObjectId = require('mongodb').ObjectId;
+import {mongodb} from '../../config.js';
+import {ObjectId} from 'mongodb';
 
-class MongoDbContainer {
+export class MongoDbContainer {
     constructor(collectionName, dbName) {
-        this.collection = (mongodb.db(dbName)).collection(collectionName)
+        this.collection = (mongodb().db(dbName)).collection(collectionName)
     }
 
     async getAll() {
@@ -20,13 +19,15 @@ class MongoDbContainer {
     }
 
     async save(object) {
+        object = {...object}
         if (object._id && typeof object._id === 'string') object._id = new ObjectId(object._id)
         const saved = await this.collection.insertOne(object);
         return {...object, _id: saved.insertedId.toString()}
     }
 
     async update(object, id) {
-        await this.collection.updateOne({_id: new ObjectId(id)}, {$set: object})
+        const {_id, ...objectNoId} = object
+        await this.collection.updateOne({_id: new ObjectId(id)}, {$set: objectNoId})
     }
 
     async deleteById(id) {
@@ -37,5 +38,3 @@ class MongoDbContainer {
         await this.collection.deleteMany({});
     }
 }
-
-module.exports = {MongoDbContainer}

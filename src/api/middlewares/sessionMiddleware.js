@@ -1,8 +1,8 @@
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 
-module.exports = session({
+export default session({
     store: MongoStore.create({
         mongoUrl: "mongodb+srv://mongodb:mongodbpassword@cluster0.ot66qlp.mongodb.net/?retryWrites=true&w=majority",
         mongoOptions: advancedOptions
@@ -14,4 +14,4 @@ module.exports = session({
     cookie: {
         maxAge: 10 * 60 * 1000
     }
-})
+});

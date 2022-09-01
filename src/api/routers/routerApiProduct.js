@@ -1,6 +1,6 @@
-const { Router } = require('express')
-const { productController } = require('../controllers/productController')
-const requireAuthorization = require('../middlewares/authorizationMiddleware')
+import {Router} from 'express';
+import {productController} from '../controllers/productController.js';
+import requireAuthorization from '../middlewares/authorizationMiddleware.js';
 
 const routerApiProduct = new Router()
 
@@ -10,4 +10,4 @@ routerApiProduct.post('/', requireAuthorization, productController.postProduct)
 routerApiProduct.put('/:id', requireAuthorization, productController.putProduct)
 routerApiProduct.delete('/:id', requireAuthorization, productController.deleteProduct)
 
-module.exports = { routerApiProduct }
+export {routerApiProduct};

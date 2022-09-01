@@ -1,4 +1,4 @@
-const multer = require('multer');
+import multer from 'multer';
 
 const uploadMiddleware = multer({
     limits: {
@@ -6,4 +6,4 @@ const uploadMiddleware = multer({
     }
 });
 
-module.exports = uploadMiddleware;
+export default uploadMiddleware;

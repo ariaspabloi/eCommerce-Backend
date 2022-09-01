@@ -1,5 +1,5 @@
-const { faker } = require('@faker-js/faker')
-const { Router } = require('express')
+import { faker } from '@faker-js/faker';
+import { Router } from 'express';
 
 const routerApiMockup = new Router()
 
@@ -24,4 +24,4 @@ const generateProducts = (cantity) => {
     }
     return products
 }
-module.exports = { routerApiMockup }
+export default { routerApiMockup };

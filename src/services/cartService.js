@@ -1,18 +1,24 @@
-const cartDao = require("../models/indexCart")
+import cartDao from '../db/indexCart.js';
+import Cart from '../models/Cart.js'
+import {getProductById} from "./productService.js";
 
 async function newCartId(_id) {
-    const cart = {products: [], _id}
-    await cartDao.save(cart);
-    return _id
+    const cart = new Cart({_id})
+    await cartDao.save(cart.dto())
+    return cart
 }
 
 async function addProduct(cartId, productId) {
     try {
-        const cart = await cartDao.getById(cartId)
-        cart.products.push(productId)
-        await cartDao.update(cart, cartId)
+        const data = await cartDao.getById(cartId)
+        const cart = new Cart(data)
+        console.log("ax", productId)
+        const product = await getProductById(productId)
+        console.log("by", product.dto(), product)
+        cart.addProduct(product.dto())
+        await cartDao.update(cart.dto(), cartId)
     } catch (error) {
-        throw error;
+        throw error
     }
 }
 
@@ -55,4 +61,4 @@ async function getCartById(id) {
 }
 
 
-module.exports = {newCartId, addProduct, getCartProducts, deleteProduct, emptyCart}
+export {newCartId, addProduct, getCartProducts, deleteProduct, emptyCart};

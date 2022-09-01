@@ -1,6 +1,6 @@
-const {Router} = require('express')
-const os = require('os')
-const compression =  require('compression')
+import { Router } from 'express';
+import os from 'os';
+import compression from 'compression';
 
 const routerInfo = new Router()
 const info = {
@@ -21,4 +21,4 @@ routerInfo.get('/compressed', compression(),async (req, res) => {
     res.json(info)
 })
 
-module.exports = routerInfo
+export default routerInfo;

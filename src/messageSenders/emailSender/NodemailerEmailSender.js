@@ -1,6 +1,6 @@
-const { createTransport } = require('nodemailer')
+import { createTransport } from 'nodemailer';
 
-module.exports = class NodemailerEmailSender {
+export default class NodemailerEmailSender {
 
     constructor(configData) {
         this.from = configData.auth.user
@@ -25,4 +25,4 @@ module.exports = class NodemailerEmailSender {
             throw customError
         }
     }
-}
+};

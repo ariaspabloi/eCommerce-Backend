@@ -1,5 +1,5 @@
-const NodemailerEmailSender = require('./NodemailerEmailSender.js')
-const { nodemailerPass, nodemailerUser } = require('../../config.js')
+import NodemailerEmailSender from './NodemailerEmailSender.js';
+import { nodemailerPass, nodemailerUser } from '../../config.js';
 
 const configData = {
     service: 'gmail',
@@ -11,4 +11,4 @@ const configData = {
 }
 
 const clienteMail = new NodemailerEmailSender(configData)
-module.exports =clienteMail
+export default clienteMail;

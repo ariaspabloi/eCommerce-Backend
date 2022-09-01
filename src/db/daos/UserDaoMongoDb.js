@@ -1,4 +1,4 @@
-const {MongoDbContainer} = require("../containers/MongoDbContainer")
+import {MongoDbContainer} from '../containers/MongoDbContainer.js';
 
 class UserDaoMongo extends MongoDbContainer {
     constructor() {
@@ -10,4 +10,4 @@ class UserDaoMongo extends MongoDbContainer {
     }
 }
 
-module.exports = UserDaoMongo
+export default UserDaoMongo;

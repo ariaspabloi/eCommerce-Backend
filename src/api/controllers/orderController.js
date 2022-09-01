@@ -1,10 +1,11 @@
-const {getUserById} = require("../../services/userService")
-const {saveOrder, getAllOrders} = require("../../services/orderService")
-const logger = require('../../util/logger')
-const {registerOrder} = require('../../services/orderService')
+import {getUserById} from '../../services/userService.js';
+import {getAllOrders} from '../../services/orderService.js';
+import logger from '../../util/logger.js';
+import {registerOrder} from '../../services/orderService.js';
+
 const testMSG = "API Test /";
 
-const orderController = {
+export const orderController = {
     info: (req, res) => {
         res.json(testMSG)
     },
@@ -23,9 +24,8 @@ const orderController = {
     },
     postOrder: async (req, res) => {
         try {
-            const ordenAgregada = await saveOrder(req.body);
             const {email, name, lastname, phone, _id} = await getUserById((await req.user)._id)
-            registerOrder(_id, email, name, lastname, phone)
+            const ordenAgregada = registerOrder(_id, email, name, lastname, phone)
             res.status(201).json(ordenAgregada)
         } catch (error) {
             logger.error('Error postOrder')
@@ -33,5 +33,3 @@ const orderController = {
         }
     }
 }
-
-module.exports = {orderController}

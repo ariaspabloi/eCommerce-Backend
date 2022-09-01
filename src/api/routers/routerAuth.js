@@ -1,11 +1,11 @@
-const {Router} = require('express')
+import { Router } from 'express';
 
-const {
+import {
     failLoginController,
     successLoginController,
     loginController,
-    logoutController
-} = require('../controllers/authController.js')
+    logoutController,
+} from '../controllers/authController.js';
 
 const routerAuth = new Router()
 
@@ -17,4 +17,4 @@ routerAuth.post('/failLogin', failLoginController)
 // logout
 routerAuth.get('/logout', logoutController)
 
-module.exports = routerAuth
+export default routerAuth;

@@ -6,4 +6,4 @@ const requireAuthorization = (req, res, next) => {
     }
 }
 
-module.exports = requireAuthorization
+export default requireAuthorization;
