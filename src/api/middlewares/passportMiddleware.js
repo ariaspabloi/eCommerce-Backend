@@ -9,7 +9,7 @@ passport.use('register', new Strategy({
 }, (req, username, password, done) => {
     try {
         req.body.password = generateHash(req.body.password)
-        registerUser(req.body).then(user => done(null, user))
+        registerUser(req.body).then(user => done(null, user.dto()))
     } catch (error) {
         done(error)
     }
@@ -19,7 +19,7 @@ passport.use('login', new Strategy({
     usernameField: 'email'
 }, (username, password, done) => {
     try {
-        authenticateUser(username, password).then(user => done(null, user))
+        authenticateUser(username, password).then(user => done(null, user.dto()))
     } catch (error) {
         done(null, false)
     }
@@ -31,14 +31,14 @@ const passportMiddleware = passport.initialize()
 ///////////////////Serializar
 
 passport.serializeUser((user, done) => {
-    done(null, user._id.toString())
+    done(null, user.id)
 })
 
 
 passport.deserializeUser(async (id, done) => {
     try {
         const user = await getUserById(id)
-        done(null, user)
+        done(null, user.dto())
     } catch (error) {
         done(error)
     }

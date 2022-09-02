@@ -1,4 +1,5 @@
 import {MongoDbContainer} from '../containers/MongoDbContainer.js';
+import {ObjectId} from "mongodb";
 
 class UserDaoMongo extends MongoDbContainer {
     constructor() {
@@ -6,7 +7,19 @@ class UserDaoMongo extends MongoDbContainer {
     }
 
     async getByEmail(email) {
-        return await this.collection.findOne({email: email})
+        const {_id, ...object} = await this.collection.findOne({email: email})
+        object.id = _id.toString()
+        return object
+    }
+
+    async checkEmail(email) {
+        try {
+            const object = await this.collection.findOne({email: email})
+            if (object) return true;
+            return false;
+        } catch (error) {
+            return false;
+        }
     }
 }
 

@@ -2,8 +2,8 @@ import cartDao from '../db/indexCart.js';
 import Cart from '../models/Cart.js'
 import {getProductById} from "./productService.js";
 
-async function newCartId(_id) {
-    const cart = new Cart({_id})
+async function newCartId(id) {
+    const cart = new Cart({id})
     await cartDao.save(cart.dto())
     return cart
 }
@@ -12,9 +12,7 @@ async function addProduct(cartId, productId) {
     try {
         const data = await cartDao.getById(cartId)
         const cart = new Cart(data)
-        console.log("ax", productId)
         const product = await getProductById(productId)
-        console.log("by", product.dto(), product)
         cart.addProduct(product.dto())
         await cartDao.update(cart.dto(), cartId)
     } catch (error) {

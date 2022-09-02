@@ -1,12 +1,12 @@
 export default class Order {
-    #_id
+    #id
     #products
     #email
     #name
     #lastname
 
-    constructor({_id, products, email, name, lastname}) {
-        this.#setId(_id);
+    constructor({id, products, email, name, lastname}) {
+        this.#setId(id);
         this.#setProducts(products)
         this.#setEmail(email)
         this.#setName(name)
@@ -16,8 +16,8 @@ export default class Order {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el _id debe estar formado por caracteres');
-        this.#_id = value
+            throw new Error('el id debe estar formado por caracteres');
+        this.#id = value
     }
 
     #setProducts(value) {
@@ -57,8 +57,8 @@ export default class Order {
         this.#lastname = value
     }
 
-    get _id() {
-        return this.#_id;
+    get id() {
+        return this.#id;
     }
 
     get products() {
@@ -79,7 +79,7 @@ export default class Order {
 
     dto() {
         return Object.freeze({
-            ...((this.#_id) && {_id: this.#_id}),
+            ...((this.#id) && {id: this.#id}),
             products: this.#products,
             email: this.#email,
             name: this.#name,

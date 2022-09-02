@@ -8,7 +8,7 @@ export const cartController = {
     },
     postAddProduct: async (req, res) => {
         try {
-            const cartId = (await req.user)._id.toString()
+            const cartId = (await req.user).id
             await addProduct(cartId, req.body.productId)
         } catch (error) {
             res.status(404).json({error: error.message});
@@ -17,7 +17,7 @@ export const cartController = {
     },
     getProducts: async (req, res) => {
         try {
-            const cartId = (await req.user)._id
+            const cartId = (await req.user).id
             const products = await getCartProducts(cartId)
             res.status(201).json(products)
         } catch (error) {
@@ -26,7 +26,7 @@ export const cartController = {
     },
     deleteProduct: async (req, res) => {
         try {
-            const cartId = (await req.user)._id
+            const cartId = (await req.user).id
             const productId = req.params.productId
             await deleteProduct(cartId, productId)
         } catch (error) {
@@ -36,7 +36,7 @@ export const cartController = {
     },
     deleteEmptyCart: async (req, res) => {
         try {
-            const cartId = await req.user._id
+            const cartId = await req.user.id
             await emptyCart(cartId)
             res.status(204).json()
         } catch (error) {

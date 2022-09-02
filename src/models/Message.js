@@ -1,25 +1,23 @@
 import Author from "./Author.js";
 
 export default class Message {
-    #_id
+    #id
     #author
     #text
     #date
-    #id
 
-    constructor({_id, author, text, date, id}) {
-        this.#set_Id(_id)
+    constructor({id, author, text, date,}) {
+        this.#setId(id)
         this.#setAuthor(author)
         this.#setText(text)
         this.#setDate(date)
-        this.#setId(id)
     }
 
-    #set_Id(value) {
+    #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el _id debe estar formado por caracteres');
-        this.#_id = value
+            throw new Error('el id debe estar formado por caracteres');
+        this.#id = value
     }
 
     #setAuthor(value) {
@@ -47,14 +45,9 @@ export default class Message {
         this.#date = value
     }
 
-    #setId(value) {
-        if (!value) throw new Error('el id debe estar');
-        this.#id = value
-    }
 
-
-    get _id() {
-        return this.#_id;
+    get id() {
+        return this.#id;
     }
 
     get author() {
@@ -69,17 +62,13 @@ export default class Message {
         return this.#date;
     }
 
-    get id() {
-        return this.#id;
-    }
 
     dto() {
         return Object.freeze({
-            ...((this.#_id) && {_id: this.#_id}),
+            ...((this.#id) && {id: this.#id}),
             author: this.#author.dto(),
             text: this.#text,
             date: this.#date,
-            id: this.#id,
         })
     }
 }

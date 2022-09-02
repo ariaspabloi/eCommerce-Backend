@@ -9,13 +9,13 @@ import User from '../models/User.js'
 
 
 const registerUser = async (userData) => {
-    if (await userDao.getByEmail(userData.email)) throw Error('email ya registrado')
+    if (await userDao.checkEmail(userData.email)) throw Error('email ya registrado')
     if (!userData.email || !userData.password) throw Error('falta el campo obligatorio')
     const user = new User(userData)
     const insertedUser = await userDao.save(user.dto())
-    await newCartId(insertedUser._id)
+    await newCartId(insertedUser.id)
     //await clienteMail.enviar({asunto: 'Nuevo registro', destinatario: mailAdmin, mensaje: `Registro de ${user.email}`})
-    return insertedUser
+    return new User(insertedUser)
 }
 
 const authenticateUser = async (username, password) => {

@@ -1,21 +1,21 @@
 export default class Cart {
-    #_id
+    #id
     #products
 
-    constructor({_id, products}) {
-        this.#setId(_id);
+    constructor({id, products}) {
+        this.#setId(id);
         this.#setProducts(products)
         this._products = products;
     }
 
     addProduct(product) {
-        if (!product._id)
+        if (!product.id)
             throw new Error('el producto debe tener id');
-        this.#products.push(product._id)
+        this.#products.push(product.id)
     }
 
     removeProduct(product) {
-        if (!product._id)
+        if (!product.id)
             throw new Error('el producto debe tener id');
         for (let i = 0; i < this.#products.length; i++) {
             if (this.#products[i] === productId._id) {
@@ -28,8 +28,8 @@ export default class Cart {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el _id debe estar formado por caracteres');
-        this.#_id = value
+            throw new Error('el id debe estar formado por caracteres');
+        this.#id = value
     }
 
     #setProducts(value) {
@@ -42,8 +42,8 @@ export default class Cart {
         this.#products = value
     }
 
-    get _id() {
-        return this.#_id;
+    get id() {
+        return this.#id;
     }
 
     get products() {
@@ -52,7 +52,7 @@ export default class Cart {
 
     dto() {
         return Object.freeze({
-            ...((this.#_id) && {_id: this.#_id}),
+            ...((this.#id) && {id: this.#id}),
             products: this.#products
         })
     }

@@ -1,5 +1,5 @@
 export default class Author {
-    #_id
+    #id
     #email
     #name
     #lastname
@@ -7,8 +7,8 @@ export default class Author {
     #alias
     #avatar
 
-    constructor({_id, email, name, lastname, age, alias, avatar}) {
-        this.#set_Id(_id);
+    constructor({id, email, name, lastname, age, alias, avatar}) {
+        this.#setId(id);
         this.#setEmail(email)
         this.#name = name
         this.#lastname = lastname
@@ -17,11 +17,11 @@ export default class Author {
         this.#avatar = avatar
     }
 
-    #set_Id(value) {
+    #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el _id debe estar formado por caracteres');
-        this.#_id = value
+            throw new Error('el id debe estar formado por caracteres');
+        this.#id = value
     }
 
     #setEmail(value) {
@@ -77,8 +77,8 @@ export default class Author {
     }
 
 
-    get _id() {
-        return this.#_id;
+    get id() {
+        return this.#id;
     }
 
     get email() {
@@ -107,7 +107,7 @@ export default class Author {
 
     dto() {
         return Object.freeze({
-            ...((this.#_id) && {_id: this.#_id}),
+            ...((this.#id) && {id: this.#id}),
             email: this.#email,
             name: this.#name,
             lastname: this.#lastname,

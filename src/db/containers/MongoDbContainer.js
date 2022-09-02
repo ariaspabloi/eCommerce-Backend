@@ -8,26 +8,35 @@ export class MongoDbContainer {
 
     async getAll() {
         const objects = await this.collection.find().toArray()
-        objects.forEach(o => o._id = o._id.toString())
+        objects.forEach(o => {
+            o.id = o._id.toString()
+            delete o._id
+        })
         return objects
     }
 
     async getById(id) {
-        const object = await this.collection.findOne({_id: new ObjectId(id)})
-        object._id = object._id.toString()
+        const {_id, ...object} = await this.collection.findOne({_id: new ObjectId(id)})
+        object.id = id
         return object
     }
 
     async save(object) {
         object = {...object}
-        if (object._id && typeof object._id === 'string') object._id = new ObjectId(object._id)
+        if (object.id && typeof object.id === 'string') {
+            object._id = new ObjectId(object.id)
+            delete object.id
+        }
         const saved = await this.collection.insertOne(object);
-        return {...object, _id: saved.insertedId.toString()}
+        return {...object, id: saved.insertedId.toString()}
     }
 
     async update(object, id) {
-        const {_id, ...objectNoId} = object
-        await this.collection.updateOne({_id: new ObjectId(id)}, {$set: objectNoId})
+        object = {...object}
+        if (object.id) {
+            delete object.id
+        }
+        await this.collection.updateOne({_id: new ObjectId(id)}, {$set: object})
     }
 
     async deleteById(id) {

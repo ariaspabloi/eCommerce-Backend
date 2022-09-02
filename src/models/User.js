@@ -1,5 +1,5 @@
 export default class User {
-    #_id
+    #id
     #email
     #password
     #name
@@ -7,8 +7,8 @@ export default class User {
     #phone
     #image
 
-    constructor({_id, email, password, name, lastname, phone, image}) {
-        this.#setId(_id)
+    constructor({id, email, password, name, lastname, phone, image}) {
+        this.#setId(id)
         this.#setEmail(email)
         this.#password = password;
         this.#name = name;
@@ -18,16 +18,15 @@ export default class User {
     }
 
 
-    get _id() {
-        return this.#_id;
+    get id() {
+        return this.#id;
     }
 
     #setId(value) {
         if (!value) return
-        value = value.toString()
         if (typeof value !== 'string')
-            throw new Error('el _id debe estar formado por caracteres');
-        this.#_id = value
+            throw new Error('el id debe estar formado por caracteres');
+        this.#id = value
     }
 
     get email() {
@@ -110,7 +109,7 @@ export default class User {
 
     dto() {
         return Object.freeze({
-            ...((this.#_id) && {_id: this.#_id}),
+            ...((this.#id) && {id: this.#id}),
             email: this.#email,
             password: this.#password,
             name: this.#name,

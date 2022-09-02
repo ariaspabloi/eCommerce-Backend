@@ -24,8 +24,8 @@ export const orderController = {
     },
     postOrder: async (req, res) => {
         try {
-            const {email, name, lastname, phone, _id} = await getUserById((await req.user)._id)
-            const ordenAgregada = registerOrder(_id, email, name, lastname, phone)
+            const {email, name, lastname, phone, id} = await getUserById((await req.user).id)
+            const ordenAgregada = registerOrder(id, email, name, lastname, phone)
             res.status(201).json(ordenAgregada)
         } catch (error) {
             logger.error('Error postOrder')
