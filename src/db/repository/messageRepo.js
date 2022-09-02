@@ -1,30 +1,29 @@
-//import Message from "../../models/Message";
+import Message from "../../models/Message.js";
 import messageDao from "../indexMessage.js";
 
-export default class ProductosRepo {
+export default class MessageRepo {
 
     constructor() {
-        this.dao = productosDao
+        this.dao = messageDao
     }
 
     async getAll() {
-        const dtos = await this.dao.getAll({})
-        return dtos.map(dto => new Producto(dto))
+        const dtos = await this.dao.getAll()
+        return dtos.map(dto => new Message(dto))
     }
 
-    async getById(idProd) {
+    async getById(id) {
         const dto = await this.dao.getById(idProd)
-        return new Producto(dto)
+        return new Message(dto)
     }
 
-    async save(prod) {
-        const dto = new ProductoDto(prod.datos())
-        const dtoGuardado = await this.dao.updateById(prod.id, dto, true);
-        return new Producto(dtoGuardado)
+    async save(data) {
+        const dto = new Message(data)
+        const insertedDto = await this.dao.save(data);
+        return new Message(insertedDto)
     }
 
-    async removeById(idProd) {
-        const dto = await this.dao.deleteById(idProd)
-        return new Producto(dto)
+    async deleteById(id) {
+        await this.dao.deleteById(id)
     }
 }

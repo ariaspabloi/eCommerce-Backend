@@ -1,8 +1,11 @@
+import MessageDaoMongoDb from '../db/daos/MessageDaoMongoDb.js';
+import messageRepo from '../db/repository/messageRepo.js'
 import normalizr from 'normalizr';
+import MessageRepo from "../db/repository/messageRepo.js";
 
 const normalize = normalizr.normalize
 const schema = normalizr.schema
-import MessageDaoMongoDb from '../db/daos/MessageDaoMongoDb.js';
+const repo = new MessageRepo()
 
 const messageDao = new MessageDaoMongoDb()
 const author = new schema.Entity('authors', {}, {idAttribute: 'email'});
@@ -16,7 +19,7 @@ async function getMessages() {
 }
 
 async function saveMessage(msg) {
-    await messageDao.save(msg);
+    await repo.save(msg);
 }
 
 
