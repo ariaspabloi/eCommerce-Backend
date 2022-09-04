@@ -19,9 +19,13 @@ export class FirebaseContainer {
     }
 
     async save(object) {
-        //return {insertedId:(await this.collection.add(object)).id}
-        await this.collection.doc(object.id).create(object)
-        return {insertedId: object.id}
+        if (object.id) {
+            await this.collection.doc(object.id).set(object)
+            return object
+        }
+        return {...object, id: (await this.collection.add(object)).id}
+        //await this.collection.doc(object.id).create(object)
+        //return {insertedId: object.id}
     }
 
     async update(object, id) {

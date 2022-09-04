@@ -1,13 +1,13 @@
 import {DBMODE, mongodb} from '../config.js';
 import OrderDaoMongoDb from './daos/OrderDaoMongoDb.js'
-import ProductDaoFirebase from './daos/ProductDaoFirebase.js'
+import OrderDaoFirebase from "./daos/OrderDaoFirebase.js";
 
 let orderDao;
 if (DBMODE === 'mongodb') {
     mongodb().connect()
     orderDao = new OrderDaoMongoDb()
 } else if (DBMODE === 'firebase') {
-    orderDao = ProductDaoFirebase()
+    orderDao = new OrderDaoFirebase()
 } else {
     mongodb().connect()
     orderDao = new OrderDaoMongoDb()

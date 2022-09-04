@@ -48,6 +48,8 @@ function getFirestoreDb() {
     return admin.firestore();
 }
 
+const fire = getFirestoreDb()
+
 const mysql = {
     client: 'mysql',
     connection: {
@@ -65,10 +67,10 @@ const sqlite3 = {
     },
     useNullAsDefault: true
 }
-const DBMODE = 'mongodb'
+const DBMODE = 'firebase'
 export {
     mode,
-    getFirestoreDb as firebase,
+    fire as firebase,
     getMongoDb as mongodb,
     DBMODE,
     nodemailerUser,
