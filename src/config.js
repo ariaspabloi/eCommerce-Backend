@@ -67,7 +67,7 @@ const sqlite3 = {
     },
     useNullAsDefault: true
 }
-const DBMODE = 'firebase'
+const DBMODE = 'mongodb'
 export {
     mode,
     fire as firebase,

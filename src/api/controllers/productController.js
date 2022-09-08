@@ -11,7 +11,7 @@ export const productController = {
         const id = req.params.id
         try {
             const product = await getProductById(id);
-            return res.json(product.dto());
+            return res.status(201).json(product.dto());
         } catch (error) {
             logger.error('Error getProduct')
             if (error.tipo === 'db not found') {
@@ -25,7 +25,7 @@ export const productController = {
         try {
             const products = await getProducts()
             const productsDto = products.map(p => p.dto())
-            res.json(productsDto)
+            res.status(201).json(productsDto)
         } catch (error) {
             logger.error('Error getProducts')
             res.status(404).json({error: error.message})
@@ -44,7 +44,7 @@ export const productController = {
         try {
             const id = req.params.id
             const product = await updateProduct(req.body, id)
-            return res.json(product.dto());
+            return res.status(201).json(product.dto());
         } catch (error) {
             logger.error('Error putProducts')
             res.status(404).json({error: error.message})
@@ -54,7 +54,7 @@ export const productController = {
         try {
             const id = req.params.id
             await deleteProduct(id)
-            res.sendStatus(204);
+            res.sendStatus(201);
         } catch (error) {
             logger.error('Error deleteProducts')
             res.status(404).json({error: error.message})

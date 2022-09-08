@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import {Router} from 'express';
 
 import {
     failLoginController,
@@ -11,8 +11,8 @@ const routerAuth = new Router()
 
 // login
 routerAuth.post('/login', loginController)
-routerAuth.post('/successLogin', successLoginController)
-routerAuth.post('/failLogin', failLoginController)
+routerAuth.get('/successLogin', successLoginController)
+routerAuth.get('/failLogin', failLoginController)
 
 // logout
 routerAuth.get('/logout', logoutController)

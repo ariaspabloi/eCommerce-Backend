@@ -2,7 +2,11 @@ const requireAuthorization = (req, res, next) => {
     if (req.isAuthenticated()) {
         next()
     } else {
-        res.status(401).json({ msg: 'este recurso requiere autenticacion' })
+        //test  option
+        next()
+        ////
+        //console.log("no logeado")
+        //res.status(401).json({msg: 'este recurso requiere autenticacion'})
     }
 }
 

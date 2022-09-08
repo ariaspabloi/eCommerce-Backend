@@ -1,15 +1,15 @@
 import passport from 'passport';
 
 const registerController = passport.authenticate('register', {
-    successRedirect: '/auth/successRegister', failureRedirect: '/auth/failRegister',
+    successRedirect: '/successRegister', failureRedirect: '/failRegister',
 })
 
 const loginController = passport.authenticate('login', {
-    successRedirect: '/auth/successLogin', failureRedirect: '/auth/failLogin',
+    successRedirect: '/successLogin', failureRedirect: '/failLogin',
 })
 
 const successRegisterController = (req, res) => {
-    res.json(req.user)
+    res.status(201).json(req.user)
     // res.sendFile('registroOk.html', { root: './views' })
 }
 
@@ -18,11 +18,11 @@ const failRegisterController = (req, res) => {
 }
 
 const successLoginController = (req, res) => {
-    res.json({msg: 'ok'})
+    res.status(201).json({msg: 'ok'})
 }
 
 const failLoginController = (req, res) => {
-    res.status(401).json({err: 'fallo el login'})
+    res.status(400).json({err: 'fallo el login'})
 }
 
 
