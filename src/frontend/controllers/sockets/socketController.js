@@ -1,9 +1,9 @@
 import productDao from '../../../db/indexProduct.js';
-import {getMessages, saveMessage} from '../../../services/messageService.js';
+import messageService from "../../../services/message/indexMessageService.js";
 
 
 async function cnxEventController(socket, io) {
-    const messages = await getMessages()
+    const messages = await messageService.getMessages()
     const products = await productDao.getAll()
     socket.emit('products', {products})
     socket.emit('messages', {messages})
@@ -12,8 +12,8 @@ async function cnxEventController(socket, io) {
 }
 
 async function messageEventController(socket, io, msg) {
-    await saveMessage(msg)
-    const messages = await getMessages()
+    await messageService.saveMessage(msg)
+    const messages = await messageService.getMessages()
     io.sockets.emit('messages', {messages})
 }
 

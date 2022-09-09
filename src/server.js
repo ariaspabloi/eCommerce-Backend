@@ -6,19 +6,17 @@ import {Server} from 'socket.io';
 import express from 'express';
 import webRouter from './frontend/routers/webRouter.js';
 import cnxEventController from './frontend/controllers/sockets/socketController.js';
-import {routerApiCart} from './api/routers/routerApiCart.js';
-import {routerApiProduct} from './api/routers/routerApiProduct.js';
 import bodyParser from 'body-parser';
 import sessionMiddleware from './api/middlewares/sessionMiddleware.js';
-
 import {passportSessionHandler, passportMiddleware} from './api/middlewares/passportMiddleware.js';
-import routerAuth from './api/routers/routerAuth.js';
-import routerApiInfo from './api/routers/routerApiInfo.js';
-import routerInfo from './api/routers/routerInfo.js';
-import routerApiRandom from './api/routers/routerApiRandom.js';
-import routerApiUser from './api/routers/routerApiUser.js';
-import routerApiOrder from './api/routers/routerApiOrder.js';
-import routerApiUpload from './api/routers/routerApiUpload.js';
+import infoRouter from './api/routers/info/indexInfoRouter.js';
+import randomRouter from './api/routers/random/indexRandomRouter.js';
+import authRouter from './api/routers/auth/indexAuthRouter.js';
+import userRouter from './api/routers/users/indexUserRouter.js';
+import orderRouter from './api/routers/order/indexOrderRouter.js';
+import uploadRouter from './api/routers/upload/indexUploadRouter.js';
+import productRouter from './api/routers/product/indexProductRouter.js'
+import cartRouter from './api/routers/cart/indexCartRouter.js'
 import requireAuthorization from './api/middlewares/authorizationMiddleware.js';
 import loggerMiddleware from './api/middlewares/loggerMiddleware.js';
 import logger from './util/logger.js';
@@ -79,15 +77,14 @@ if (mode === "CLUSTER" && cluster.isPrimary) {
     app.use(passportSessionHandler)
     /////////////////Routers
     app.use('/', webRouter)
-    app.use('/info', routerInfo)
-    app.use('/api/randoms', routerApiRandom)
-    app.use('/api/upload', routerApiUpload)
-    app.use('/api/users', routerApiUser)
-    app.use('/', routerAuth)
-    app.use('/api/info', requireAuthorization, routerApiInfo)
-    app.use('/api/products', routerApiProduct)
-    app.use('/api/orders', routerApiOrder)
-    app.use('/api/shoppingcartproducts', requireAuthorization, routerApiCart)
+    app.use('/api/info', requireAuthorization, infoRouter)
+    app.use('/api/randoms', randomRouter)
+    app.use('/api/upload', uploadRouter)
+    app.use('/api/users', userRouter)
+    app.use('/', authRouter)
+    app.use('/api/products', productRouter)
+    app.use('/api/orders', orderRouter)
+    app.use('/api/shoppingcartproducts', requireAuthorization, cartRouter)
     //app.use('/api/productos-test', requireAuthorization, routerApiMockup)
     app.all('*', (req, res) => {
         logger.warn(`Ruta ${req.originalUrl} metodo ${req.method} no implementada`)
