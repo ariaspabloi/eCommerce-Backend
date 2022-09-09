@@ -42,6 +42,7 @@ import cluster from 'cluster';
 
 import os from 'os';
 import parseArgs from 'minimist';
+import {graphqlMiddleware} from "./graphql/graphqlMiddleware.js";
 
 const options = {
     default: {
@@ -75,6 +76,7 @@ if (mode === "CLUSTER" && cluster.isPrimary) {
     app.use(sessionMiddleware)
     app.use(passportMiddleware)
     app.use(passportSessionHandler)
+    app.use('/graphql', graphqlMiddleware)
     /////////////////Routers
     app.use('/', webRouter)
     app.use('/api/info', requireAuthorization, infoRouter)

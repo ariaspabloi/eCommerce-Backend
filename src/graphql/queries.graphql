@@ -1,0 +1,46 @@
+mutation createProducts{
+  createProduct(data: {
+    name: "Papa Noel TEST",
+    description: "El mejor Papa Noel",
+    price: 1500,
+    image: "{{IMAGE_URL_3}}"
+  }),
+  {
+    id
+  }
+}
+
+query getProducts{
+  getProducts {
+    id
+    name
+    price
+  }
+}
+
+query getProductsPRICE130{
+  getProducts(field: "price", value: "130") {
+    id
+  }
+}
+
+query getProduct{
+  getProduct(id:"631287af77f460a6aa3df1b4") {
+    id,
+    price,
+    description,
+  }
+}
+
+
+mutation updateProduct{
+  updateProduct(id:"631287af77f460a6aa3df1b4",data: {
+    name: "Nuevo Papa NOel",
+    description: "PapaNoel actualizado",
+    price: 130,
+    image: "{{IMAGE_URL_4}}"
+  }){
+    name,
+    description,
+  }
+}

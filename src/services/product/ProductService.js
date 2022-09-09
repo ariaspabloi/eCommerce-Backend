@@ -13,9 +13,12 @@ export default class ProductService {
         return product;
     }
 
-    async getProducts() {
-        const data = await this.#dao.getAll()
-        const products = data.map(d => new Product(d))
+    async getProducts(field = "none", value = "none") {
+        let products = await this.#dao.getAll()
+        if (field !== "none" && value !== "none") {
+            products = products.filter(d => d[field] == value)
+        }
+        products = products.map(d => new Product(d))
         return products;
     }
 
