@@ -1,4 +1,5 @@
 import Author from "./Author.js";
+import Api400Error from "../util/errors/Api400Error.js";
 
 export default class Message {
     #id
@@ -16,32 +17,35 @@ export default class Message {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el id debe estar formado por caracteres');
+            throw new Api400Error('el id debe estar formado por caracteres');
         this.#id = value
     }
 
     #setAuthor(value) {
-        if (!value) return
-        if (typeof yourVariable === 'object')
-            throw new Error('el author no tiene datos');
+        if (!value)
+            throw new Api400Error('El campo author no esta.');
+        //if (typeof value === 'object')
+        //    throw new Api400Error('el author no tiene datos');
         this.#author = new Author(value)
     }
 
     #setText(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo text no esta.');
         if (typeof value !== 'string')
-            throw new Error('el mensaje debe estar formado por caracteres');
+            throw new Api400Error('El mensaje debe estar formado por caracteres.');
         if (value.length < 1)
-            throw new Error('el mensaje debe tener al menos 1 caracteres');
+            throw new Api400Error('El mensaje debe tener al menos 1 caracteres.');
         this.#text = value
     }
 
     #setDate(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo date no esta.');
         if (typeof value !== 'string')
-            throw new Error('la fecha debe estar formado por caracteres');
+            throw new Api400Error('La fecha debe estar formado por caracteres.');
         if (value.length < 6)
-            throw new Error('la fecha debe tener al menos 6 caracteres');
+            throw new Api400Error('La fecha debe tener al menos 6 caracteres.');
         this.#date = value
     }
 

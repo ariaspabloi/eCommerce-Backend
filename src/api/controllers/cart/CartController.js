@@ -1,3 +1,5 @@
+import logger from "../../../util/logger.js";
+
 const testMSG = "API Test /";
 
 export default class CartController {
@@ -12,44 +14,46 @@ export default class CartController {
     }
 
 
-    postAddProduct = async (req, res) => {
+    postAddProduct = async (req, res, next) => {
         try {
             const cartId = (await req.user).id
             await this.#service.addProduct(cartId, req.body.productId)
         } catch (error) {
-            res.status(404).json({error: error.message});
+            logger.error(`Error postAddProduct: ${e}`)
+            next(e)
         }
-        res.status(201).json()
     }
 
-    getProducts = async (req, res) => {
+    getProducts = async (req, res, next) => {
         try {
             const cartId = (await req.user).id
             const products = await this.#service.getCartProducts(cartId)
             res.status(201).json(products)
         } catch (error) {
-            res.status(404).json({error: error.message});
+            logger.error(`Error getProducts: ${e}`)
+            next(e)
         }
     }
 
-    deleteProduct = async (req, res) => {
+    deleteProduct = async (req, res, next) => {
         try {
             const cartId = (await req.user).id
             const productId = req.params.productId
             await this.#service.deleteProduct(cartId, productId)
         } catch (error) {
-            res.status(404).json({error: error.message});
+            logger.error(`Error deleteProduct: ${e}`)
+            next(e)
         }
-        res.status(201).json()
     }
 
-    deleteEmptyCart = async (req, res) => {
+    deleteEmptyCart = async (req, res, next) => {
         try {
             const cartId = await req.user.id
             await this.#service.emptyCart(cartId)
             res.status(204).json()
         } catch (error) {
-            res.status(404).json({error: error.message});
+            logger.error(`Error deleteEmptyCart: ${e}`)
+            next(e)
         }
     }
 }

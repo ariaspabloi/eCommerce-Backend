@@ -1,3 +1,6 @@
+import BaseError from "../../util/errors/BaseError.js";
+import Api500Error from "../../util/errors/Api500Error.js";
+
 export default class MessageService {
     #messageRepo
     #author
@@ -16,11 +19,21 @@ export default class MessageService {
     }
 
     async getMessages() {
-        let msgs = await this.#messageRepo.getAll()
-        return this.#normalize(msgs, [this.#message]);
+        try {
+            let msgs = await this.#messageRepo.getAll()
+            return this.#normalize(msgs, [this.#message])
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error conseguir mensajes`)
+        }
     }
 
     async saveMessage(msg) {
-        await this.#messageRepo.save(msg);
+        try {
+            await this.#messageRepo.save(msg);
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error al guardar mensaje`)
+        }
     }
 }

@@ -1,3 +1,5 @@
+import Api400Error from "../util/errors/Api400Error.js";
+
 export default class Order {
     #id
     #products
@@ -16,7 +18,7 @@ export default class Order {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el id debe estar formado por caracteres');
+            throw new Api400Error('El id debe estar formado por caracteres.');
         this.#id = value
     }
 
@@ -26,34 +28,37 @@ export default class Order {
             return
         }
         if (!Array.isArray(value))
-            throw new Error('los productos debe estar formado por caracteres');
+            throw new Api400Error('Los productos debe estar formado por caracteres.');
         this.#products = value
     }
 
     #setEmail(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo email no esta.');
         if (typeof value !== 'string')
-            throw new Error('el email debe estar formado por caracteres');
+            throw new Api400Error('El email debe estar formado por caracteres.');
         if (value.length < 6)
-            throw new Error('el email debe tener al menos 6 caracteres');
+            throw new Api400Error('El email debe tener al menos 6 caracteres.');
         this.#email = value
     }
 
     #setName(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo name no esta.');
         if (typeof value !== 'string')
-            throw new Error('el name debe estar formado por caracteres');
+            throw new Api400Error('El name debe estar formado por caracteres.');
         if (value.length < 6)
-            throw new Error('el name debe tener al menos 6 caracteres');
+            throw new Api400Error('El name debe tener al menos 6 caracteres.');
         this.#name = value
     }
 
     #setLastname(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo lastname no esta.');
         if (typeof value !== 'string')
-            throw new Error('el lastname debe estar formado por caracteres');
+            throw new Api400Error('El lastname debe estar formado por caracteres.');
         if (value.length < 6)
-            throw new Error('el lastname debe tener al menos 6 caracteres');
+            throw new Api400Error('El lastname debe tener al menos 6 caracteres.');
         this.#lastname = value
     }
 

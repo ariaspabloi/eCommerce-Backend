@@ -6,9 +6,8 @@ export default class AuthController {
     }
 
     loginController = passport.authenticate('login', {
-        successRedirect: '/successLogin', failureRedirect: '/failLogin',
+        successRedirect: '/successLogin', failureRedirect: '/failLogin'
     })
-
 
     successRegisterController = (req, res) => {
         res.status(201).json(req.user)

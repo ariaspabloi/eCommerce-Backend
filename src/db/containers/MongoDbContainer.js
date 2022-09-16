@@ -17,7 +17,7 @@ export class MongoDbContainer {
 
     async getById(id) {
         const {_id, ...object} = await this.collection.findOne({_id: new ObjectId(id)})
-        object.id = id
+        if (object) object.id = id
         return object
     }
 

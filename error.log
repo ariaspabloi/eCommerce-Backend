@@ -39,3 +39,28 @@
 {"level":"error","message":"Error postProducts"}
 {"level":"error","message":"Error getProduct"}
 {"level":"error","message":"Error getProduct"}
+{"level":"error","message":"Error postProducts"}
+{"level":"error","message":"Error postProducts: ReferenceError: name is not defined"}
+{"level":"error","message":"Error postProducts: Error al guardar producto Papa Noel TEST: Internal server error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 1: Internal server error."}
+{"level":"error","message":"Error putProduct: Error al actualizar producto con id 1s: Not found."}
+{"level":"error","message":"Error deleteProduct: Producto de id asda no encontrado para borrar: Client request error."}
+{"level":"error","message":"Error deleteProduct: Producto de id as no encontrado para borrar: Client request error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 123: Internal server error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"isOperational":true,"level":"error","name":"\"name\" es un campo requerido","statusCode":400}
+{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
+{"isOperational":true,"level":"error","name":"\"name\" es un campo requerido","statusCode":400}
+{"level":"error"}
+{"level":"error"}
+{"isOperational":true,"level":"error","statusCode":401}
+{"isOperational":true,"level":"error","statusCode":401}
+{"isOperational":true,"level":"error","statusCode":401}
+{"isOperational":true,"level":"error","statusCode":401}
+{"isOperational":true,"level":"error","statusCode":401}

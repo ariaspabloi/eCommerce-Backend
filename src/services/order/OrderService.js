@@ -3,6 +3,8 @@ import clienteMail from '../../messageSenders/emailSender/index.js';
 import clienteWsp from '../../messageSenders/wspSender/index.js';
 import clienteSms from '../../messageSenders/smsSender/index.js';
 import {mailAdmin, whatsappAdmin} from '../../config.js';
+import BaseError from "../../util/errors/BaseError.js";
+import Api500Error from "../../util/errors/Api500Error.js";
 
 
 export default class OrderService {
@@ -32,16 +34,26 @@ export default class OrderService {
              */
             await this.#cartService.emptyCart(cartId)
             return orderInserted
-        } catch (error) {
-            throw error;
+        } catch (e) {
+            if (e instanceof BaseError)
+                throw e;
+            throw new Api500Error(`Error al registrar orden de ${email}`)
         }
     }
 
     async getAllOrders() {
-        return await this.#dao.getAll()
+        try {
+            return await this.#dao.getAll()
+        } catch (e) {
+            throw new Api500Error(`Error al sacar todas las ordenes`)
+        }
     }
 
     async saveOrder(order) {
-        return await this.#dao.save(order)
+        try {
+            return await this.#dao.save(order)
+        } catch (e) {
+            throw new Api500Error(`Error al guardar orden de ${order?.email}`)
+        }
     }
 }

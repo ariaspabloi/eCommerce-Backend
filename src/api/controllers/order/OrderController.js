@@ -15,28 +15,24 @@ export default class OrderController {
         res.json(testMSG)
     }
 
-    getOrder = async (req, res) => {
+    getOrder = async (req, res, next) => {
         try {
             const orders = await this.#service.getAllOrders()
             return res.status(201).json(orders);
-        } catch (error) {
+        } catch (e) {
             logger.error('Error getOrder')
-            if (error.tipo === 'db not found') {
-                res.status(404).json({error: error.message})
-            } else {
-                res.status(500).json({error: error.message})
-            }
+            next(e)
         }
     }
 
-    postOrder = async (req, res) => {
+    postOrder = async (req, res, next) => {
         try {
             const {email, name, lastname, phone, id} = await this.#userService.getUserById((await req.user).id)
             const ordenAgregada = this.#service.registerOrder(id, email, name, lastname, phone)
             res.status(201).json(ordenAgregada)
-        } catch (error) {
+        } catch (e) {
             logger.error('Error postOrder')
-            res.status(404).json({error: error.message})
+            next(e)
         }
     }
 }

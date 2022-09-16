@@ -1,3 +1,5 @@
+import Api400Error from "../util/errors/Api400Error.js";
+
 export default class User {
     #id
     #email
@@ -25,7 +27,7 @@ export default class User {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el id debe estar formado por caracteres');
+            throw new Api400Error('El id debe estar formado por caracteres.');
         this.#id = value
     }
 
@@ -34,11 +36,12 @@ export default class User {
     }
 
     #setEmail(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo email es requerido.');
         if (typeof value !== 'string')
-            throw new Error('el email debe estar formado por caracteres');
+            throw new Api400Error('El email debe estar formado por caracteres.');
         if (value.length < 6)
-            throw new Error('el email debe tener al menos 6 caracteres');
+            throw new Api400Error('El email debe tener al menos 6 caractere.s');
         this.#email = value
     }
 
@@ -47,11 +50,12 @@ export default class User {
     }
 
     set password(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo password es requerido.');
         if (typeof value !== 'string')
-            throw new Error('el password debe estar formado por caracteres');
+            throw new Api400Error('el password debe estar formado por caracteres');
         if (value.length < 6)
-            throw new Error('el password debe tener al menos 6 caracteres');
+            throw new Api400Error('el password debe tener al menos 6 caracteres');
         this.#password = value
     }
 
@@ -60,11 +64,12 @@ export default class User {
     }
 
     set name(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo name es requerido.');
         if (typeof value !== 'string')
-            throw new Error('el name debe estar formado por caracteres');
+            throw new Api400Error('el name debe estar formado por caracteres');
         if (value.length < 6)
-            throw new Error('el name debe tener al menos 6 caracteres');
+            throw new Api400Error('el name debe tener al menos 6 caracteres');
         this.#name = value
     }
 
@@ -73,11 +78,12 @@ export default class User {
     }
 
     set lastname(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo lastname es requerido.');
         if (typeof value !== 'string')
-            throw new Error('el lastname debe estar formado por caracteres');
+            throw new Api400Error('el lastname debe estar formado por caracteres');
         if (value.length < 6)
-            throw new Error('el lastname debe tener al menos 6 caracteres');
+            throw new Api400Error('el lastname debe tener al menos 6 caracteres');
         this.#lastname = value
     }
 
@@ -86,11 +92,12 @@ export default class User {
     }
 
     set phone(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo phone es requerido.');
         if (typeof value !== 'string')
-            throw new Error('el phone debe estar formado por caracteres');
+            throw new Api400Error('el phone debe estar formado por caracteres');
         if (value.length < 6)
-            throw new Error('el phone debe tener al menos 6 caracteres');
+            throw new Api400Error('el phone debe tener al menos 6 caracteres');
         this.#phone = value
     }
 
@@ -99,11 +106,12 @@ export default class User {
     }
 
     set image(value) {
-        if (!value) return
+        if (!value)
+            throw new Api400Error('El campo image es requerido.');
         if (typeof value !== 'string')
-            throw new Error('la image debe estar formado por caracteres');
+            throw new Api400Error('la image debe estar formado por caracteres');
         if (value.length < 3)
-            throw new Error('la image debe tener al menos 3 caracteres');
+            throw new Api400Error('la image debe tener al menos 3 caracteres');
         this.#image = value
     }
 

@@ -6,12 +6,11 @@ import {generateHash} from '../../util/helpers.js';
 passport.use('register', new Strategy({
     usernameField: 'email',
     passReqToCallback: true
-}, (req, username, password, done) => {
-
-    console.log("posta2")
+}, async (req, username, password, done) => {
     try {
         req.body.password = generateHash(req.body.password)
-        userService.registerUser(req.body).then(user => done(null, user.dto()))
+        const user = userService.registerUser(req.body)
+        done(null, user.dto())
     } catch (error) {
         done(error)
     }
@@ -19,9 +18,10 @@ passport.use('register', new Strategy({
 
 passport.use('login', new Strategy({
     usernameField: 'email'
-}, (username, password, done) => {
+}, async (username, password, done) => {
     try {
-        userService.authenticateUser(username, password).then(user => done(null, user.dto()))
+        const user = await userService.authenticateUser(username, password)
+        done(null, user.dto())
     } catch (error) {
         done(null, false)
     }
@@ -33,7 +33,11 @@ const passportMiddleware = passport.initialize()
 ///////////////////Serializar
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    try {
+        done(null, user.id)
+    } catch (e) {
+        done(error)
+    }
 })
 
 

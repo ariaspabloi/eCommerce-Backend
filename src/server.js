@@ -18,10 +18,14 @@ import uploadRouter from './api/routers/upload/indexUploadRouter.js';
 import productRouter from './api/routers/product/indexProductRouter.js'
 import cartRouter from './api/routers/cart/indexCartRouter.js'
 import requireAuthorization from './api/middlewares/authorizationMiddleware.js';
-import loggerMiddleware from './api/middlewares/loggerMiddleware.js';
 import logger from './util/logger.js';
 import {mode} from './config.js';
-
+import {graphqlMiddleware} from "./graphql/graphqlMiddleware.js";
+import {logErrorMiddleware, returnError} from "./api/middlewares/errorHandler.js";
+import cluster from 'cluster';
+import os from 'os';
+import parseArgs from 'minimist';
+import loggerMiddleware from "./api/middlewares/loggerMiddleware.js";
 /////////////////Get arguments and cluster||fork
 //node src/server.js --port 8081
 ////NODEMON
@@ -38,11 +42,6 @@ import {mode} from './config.js';
 //pm2 start src/server.js --name="ServerX" --watch -i max -- --port 8082 --mode FORK
 //pm2 delete all
 
-import cluster from 'cluster';
-
-import os from 'os';
-import parseArgs from 'minimist';
-import {graphqlMiddleware} from "./graphql/graphqlMiddleware.js";
 
 const options = {
     default: {
@@ -88,6 +87,8 @@ if (mode === "CLUSTER" && cluster.isPrimary) {
     app.use('/api/orders', orderRouter)
     app.use('/api/shoppingcartproducts', requireAuthorization, cartRouter)
     //app.use('/api/productos-test', requireAuthorization, routerApiMockup)
+    app.use(logErrorMiddleware)
+    app.use(returnError)
     app.all('*', (req, res) => {
         logger.warn(`Ruta ${req.originalUrl} metodo ${req.method} no implementada`)
         res.status(404).json({error: -2, descripcion: `Ruta ${req.originalUrl} metodo ${req.method} no implementada`});

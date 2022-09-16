@@ -1,4 +1,6 @@
 import Cart from '../../models/Cart.js'
+import BaseError from "../../util/errors/BaseError.js";
+import Api500Error from "../../util/errors/Api500Error.js";
 
 export default class CartService {
     #dao
@@ -10,9 +12,14 @@ export default class CartService {
     }
 
     async newCartId(id) {
-        const cart = new Cart({id})
-        await this.#dao.save(cart.dto())
-        return cart
+        try {
+            const cart = new Cart({id})
+            await this.#dao.save(cart.dto())
+            return cart
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error al registrar carro de id ${id}`)
+        }
     }
 
     async addProduct(cartId, productId) {
@@ -23,7 +30,8 @@ export default class CartService {
             cart.addProduct(product.dto())
             await this.#dao.update(cart.dto(), cartId)
         } catch (error) {
-            throw error
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error al agregar producto de id ${productId} al carrito de id ${cartId}`)
         }
     }
 
@@ -31,8 +39,9 @@ export default class CartService {
         try {
             const cart = await this.#dao.getById(cartId)
             return cart.products
-        } catch (error) {
-            throw error;
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error al recuperar productos del carrito de id ${cartId}`)
         }
     }
 
@@ -46,8 +55,9 @@ export default class CartService {
                 }
             }
             await this.#dao.update(cart, cartId)
-        } catch (error) {
-            throw error;
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error al borrar producto de id ${productId} del carrito de id ${cartId}`)
         }
     }
 
@@ -56,12 +66,18 @@ export default class CartService {
             const cart = await this.#dao.getById(cartId)
             cart.products = []
             await this.#dao.update(cart, cartId)
-        } catch (error) {
-            throw error;
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error al vaciar carrito de id ${cartId}`)
         }
     }
 
     async getCartById(id) {
-        return await this.#dao.getById(id)
+        try {
+            return await this.#dao.getById(id)
+        } catch (e) {
+            if (e instanceof BaseError) throw e;
+            throw new Api500Error(`Error conseguir carrito de id ${cartId}`)
+        }
     }
 }

@@ -1,3 +1,5 @@
+import Api400Error from "../util/errors/Api400Error.js";
+
 export default class Cart {
     #id
     #products
@@ -10,13 +12,13 @@ export default class Cart {
 
     addProduct(product) {
         if (!product.id)
-            throw new Error('el producto debe tener id');
+            throw new Api400Error('El producto debe tener id.');
         this.#products.push(product.id)
     }
 
     removeProduct(product) {
         if (!product.id)
-            throw new Error('el producto debe tener id');
+            throw new Api400Error('El producto debe tener id.');
         for (let i = 0; i < this.#products.length; i++) {
             if (this.#products[i] === productId._id) {
                 this.#products.splice(i, 1)
@@ -28,7 +30,7 @@ export default class Cart {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el id debe estar formado por caracteres');
+            throw new Api400Error('El id debe estar formado por caracteres.');
         this.#id = value
     }
 
@@ -38,7 +40,7 @@ export default class Cart {
             return
         }
         if (!Array.isArray(value))
-            throw new Error('los productos debe estar formado por caracteres');
+            throw new Api400Error('Los productos debe estar formado por un array.');
         this.#products = value
     }
 

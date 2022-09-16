@@ -1,7 +1,7 @@
 import logger from '../../../util/logger.js';
 
 const testMSG = "API Test /";
-
+//res.status(404).json({error: error.message})
 
 export default class ProductController {
     #service
@@ -14,61 +14,57 @@ export default class ProductController {
         res.json(testMSG)
     }
 
-    getProduct = async (req, res) => {
+    getProduct = async (req, res, next) => {
         const id = req.params.id
         try {
             const product = await this.#service.getProductById(id);
             return res.status(201).json(product.dto());
-        } catch (error) {
-            logger.error('Error getProduct')
-            if (error.tipo === 'db not found') {
-                res.status(404).json({error: error.message})
-            } else {
-                res.status(500).json({error: error.message})
-            }
+        } catch (e) {
+            logger.error(`Error getProduct: ${e}`)
+            next(e)
         }
     }
 
-    getProducts = async (req, res) => {
+    getProducts = async (req, res, next) => {
         try {
             const products = await this.#service.getProducts()
             const productsDto = products.map(p => p.dto())
             res.status(201).json(productsDto)
-        } catch (error) {
-            logger.error('Error getProducts')
-            res.status(404).json({error: error.message})
+        } catch (e) {
+            logger.error(`Error getProducts: ${e}`)
+            next(e)
         }
     }
 
-    postProduct = async (req, res) => {
+    postProduct = async (req, res, next) => {
         try {
             const personaAgregada = await this.#service.saveProduct(req.body);
             res.status(201).json(personaAgregada.dto())
-        } catch (error) {
-            logger.error('Error postProducts')
-            res.status(404).json({error: error.message})
+        } catch (e) {
+            logger.error(`Error postProducts: ${e}`)
+            next(e)
         }
     }
 
-    putProduct = async (req, res) => {
+    putProduct = async (req, res, next) => {
         try {
             const id = req.params.id
             const product = await this.#service.updateProduct(req.body, id)
             return res.status(201).json(product.dto());
-        } catch (error) {
-            logger.error('Error putProducts')
-            res.status(404).json({error: error.message})
+        } catch (e) {
+            logger.error(`Error putProduct: ${e}`)
+            next(e)
         }
     }
 
-    deleteProduct = async (req, res) => {
+    deleteProduct = async (req, res, next) => {
         try {
             const id = req.params.id
             await this.#service.deleteProduct(id)
             res.sendStatus(201);
-        } catch (error) {
-            logger.error('Error deleteProducts')
-            res.status(404).json({error: error.message})
+        } catch (e) {
+            logger.error(`Error deleteProduct: ${e}`)
+            next(e)
         }
     }
 }

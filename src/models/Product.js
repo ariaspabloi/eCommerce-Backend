@@ -1,3 +1,5 @@
+import Api400Error from "../util/errors/Api400Error.js";
+
 export default class Product {
     #id
     #name
@@ -16,47 +18,47 @@ export default class Product {
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el id debe estar formado por caracteres');
+            throw new Api400Error('el id debe estar formado por caracteres');
         this.#id = value
     }
 
     #setName(value) {
         if (!value)
-            throw new Error('"name" es un campo requerido');
+            throw new Api400Error('"name" es un campo requerido');
         if (typeof value !== 'string')
-            throw new Error('el name debe estar formado por caracteres');
+            throw new Api400Error('el name debe estar formado por caracteres');
         if (value.length < 4)
-            throw new Error('el name debe tener al menos 4 caracteres');
+            throw new Api400Error('el name debe tener al menos 4 caracteres');
         this.#name = value
     }
 
     set description(value) {
         if (!value)
-            throw new Error('"description" es un campo requerido');
+            throw new Api400Error('"description" es un campo requerido');
         if (typeof value !== 'string')
-            throw new Error('la descripcion debe estar formado por caracteres');
+            throw new Api400Error('la descripcion debe estar formado por caracteres');
         if (value.length < 4)
-            throw new Error('la descripcion debe tener al menos 4 caracteres');
+            throw new Api400Error('la descripcion debe tener al menos 4 caracteres');
         this.#description = value;
     }
 
     set price(value) {
         if (!value)
-            throw new Error('"price" es un campo requerido');
+            throw new Api400Error('"price" es un campo requerido');
         if (isNaN(value))
-            throw new Error('el precio debe ser numerico');
+            throw new Api400Error('el precio debe ser numerico');
         if (value <= 0)
-            throw new Error('el precio debe ser mayor a cero');
+            throw new Api400Error('el precio debe ser mayor a cero');
         this.#price = value;
     }
 
     set image(value) {
         if (!value)
-            throw new Error('"image" es un campo requerido');
+            throw new Api400Error('"image" es un campo requerido');
         if (typeof value !== 'string')
-            throw new Error('la imagen debe estar formado por caracteres');
+            throw new Api400Error('la imagen debe estar formado por caracteres');
         if (value.length < 6)
-            throw new Error('la imagen debe tener al menos 6 caracteres');
+            throw new Api400Error('la imagen debe tener al menos 6 caracteres');
         this.#image = value;
     }
 
