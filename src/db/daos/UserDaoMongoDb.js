@@ -8,7 +8,7 @@ class UserDaoMongo extends MongoDbContainer {
 
     async getByEmail(email) {
         const {_id, ...object} = await this.collection.findOne({email: email})
-        object.id = _id.toString()
+        object.id = _id
         return object
     }
 

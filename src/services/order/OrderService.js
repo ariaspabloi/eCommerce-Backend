@@ -5,6 +5,7 @@ import clienteSms from '../../messageSenders/smsSender/index.js';
 import {mailAdmin, whatsappAdmin} from '../../config.js';
 import BaseError from "../../util/errors/BaseError.js";
 import Api500Error from "../../util/errors/Api500Error.js";
+import {generateId} from "../../util/helpers.js";
 
 
 export default class OrderService {
@@ -19,7 +20,7 @@ export default class OrderService {
     async registerOrder(cartId, email, name, lastname, phone) {
         try {
             const products = await this.#cartService.getCartProducts(cartId)
-            const order = new Order({products, email, name, lastname})
+            const order = new Order({id: generateId(), products, email, name, lastname})
             const orderInserted = await this.#dao.save(order.dto())
             //const order = await orderDao.save({products, email, name, lastname})
 

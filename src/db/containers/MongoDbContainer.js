@@ -9,26 +9,27 @@ export class MongoDbContainer {
     async getAll() {
         const objects = await this.collection.find().toArray()
         objects.forEach(o => {
-            o.id = o._id.toString()
+            o.id = o._id
             delete o._id
         })
         return objects
     }
 
     async getById(id) {
-        const {_id, ...object} = await this.collection.findOne({_id: new ObjectId(id)})
-        if (object) object.id = id
+        const object = await this.collection.findOne({_id: id})
+        if (object) {
+            object.id = object._id
+            delete object._id
+        }
         return object
     }
 
     async save(object) {
-        object = {...object}
-        if (object.id && typeof object.id === 'string') {
-            object._id = new ObjectId(object.id)
-            delete object.id
-        }
-        const saved = await this.collection.insertOne(object);
-        return {...object, id: saved.insertedId.toString()}
+        const o = {...object}
+        o._id = o.id
+        delete o.id
+        const saved = await this.collection.insertOne(o);
+        return object;
     }
 
     async update(object, id) {
@@ -36,11 +37,11 @@ export class MongoDbContainer {
         if (object.id) {
             delete object.id
         }
-        await this.collection.updateOne({_id: new ObjectId(id)}, {$set: object})
+        await this.collection.updateOne({_id: id}, {$set: object})
     }
 
     async deleteById(id) {
-        await this.collection.deleteOne({_id: new ObjectId(id)})
+        await this.collection.deleteOne({_id: id})
     }
 
     async deleteAll() {

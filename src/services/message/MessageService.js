@@ -1,5 +1,6 @@
 import BaseError from "../../util/errors/BaseError.js";
 import Api500Error from "../../util/errors/Api500Error.js";
+import {generateId} from "../../util/helpers.js";
 
 export default class MessageService {
     #messageRepo
@@ -30,6 +31,7 @@ export default class MessageService {
 
     async saveMessage(msg) {
         try {
+            if (!msg.id) msg.id = generateId()
             await this.#messageRepo.save(msg);
         } catch (e) {
             if (e instanceof BaseError) throw e;

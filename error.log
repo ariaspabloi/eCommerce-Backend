@@ -64,3 +64,31 @@
 {"isOperational":true,"level":"error","statusCode":401}
 {"isOperational":true,"level":"error","statusCode":401}
 {"isOperational":true,"level":"error","statusCode":401}
+{"isOperational":true,"level":"error","statusCode":401}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
+{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
+{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
+{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
+{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
+{"isOperational":true,"level":"error","statusCode":401}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id as: Internal server error."}
+{"isOperational":true,"level":"error","name":"Error al recupar producto de id as","statusCode":500}
+{"level":"error","message":"Error getProduct: Error al recupar producto de id 1: Internal server error."}
+{"isOperational":true,"level":"error","name":"Error al recupar producto de id 1","statusCode":500}
+{"level":"error","message":"Error getProduct: User with id 12 not found.: Not found."}
+{"isOperational":true,"level":"error","name":"User with id 12 not found.","statusCode":404}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","field":"image","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}

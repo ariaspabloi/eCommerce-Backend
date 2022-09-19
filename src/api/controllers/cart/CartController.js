@@ -18,7 +18,8 @@ export default class CartController {
         try {
             const cartId = (await req.user).id
             await this.#service.addProduct(cartId, req.body.productId)
-        } catch (error) {
+            res.status(201).json()
+        } catch (e) {
             logger.error(`Error postAddProduct: ${e}`)
             next(e)
         }
@@ -29,7 +30,7 @@ export default class CartController {
             const cartId = (await req.user).id
             const products = await this.#service.getCartProducts(cartId)
             res.status(201).json(products)
-        } catch (error) {
+        } catch (e) {
             logger.error(`Error getProducts: ${e}`)
             next(e)
         }
@@ -40,7 +41,8 @@ export default class CartController {
             const cartId = (await req.user).id
             const productId = req.params.productId
             await this.#service.deleteProduct(cartId, productId)
-        } catch (error) {
+            res.status(201).json()
+        } catch (e) {
             logger.error(`Error deleteProduct: ${e}`)
             next(e)
         }
@@ -51,7 +53,7 @@ export default class CartController {
             const cartId = await req.user.id
             await this.#service.emptyCart(cartId)
             res.status(204).json()
-        } catch (error) {
+        } catch (e) {
             logger.error(`Error deleteEmptyCart: ${e}`)
             next(e)
         }

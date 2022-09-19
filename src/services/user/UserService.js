@@ -2,7 +2,7 @@ import clienteMail from '../../messageSenders/emailSender/index.js';
 import {mailAdmin} from '../../config.js';
 import path from 'path';
 import Resize from '../../util/Resize.js';
-import {validPassword} from '../../util/helpers.js';
+import {generateId, validPassword} from '../../util/helpers.js';
 import User from '../../models/User.js'
 import Api400Error from "../../util/errors/Api400Error.js";
 import Api404Error from "../../util/errors/Api404Error.js";
@@ -22,6 +22,8 @@ export default class UserService {
         try {
             if (!userData.email || !userData.password) throw new Api400Error('Falta el campo obligatorio.');
             if (await this.#dao.checkEmail(userData.email)) throw new Api400Error('Email ya registrado.');
+            const idd = generateId()
+            userData.id = generateId()
             const user = new User(userData)
             const insertedUser = await this.#dao.save(user.dto())
             await this.#cartService.newCartId(insertedUser.id)

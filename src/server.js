@@ -80,7 +80,7 @@ if (mode === "CLUSTER" && cluster.isPrimary) {
     app.use('/', webRouter)
     app.use('/api/info', requireAuthorization, infoRouter)
     app.use('/api/randoms', randomRouter)
-    app.use('/api/upload', uploadRouter)
+    app.use('/api/images', uploadRouter)
     app.use('/api/users', userRouter)
     app.use('/', authRouter)
     app.use('/api/products', productRouter)

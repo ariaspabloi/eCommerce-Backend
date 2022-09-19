@@ -3,6 +3,7 @@ import Api404Error from "../../util/errors/Api404Error.js";
 import Api400Error from "../../util/errors/Api400Error.js";
 import Api500Error from "../../util/errors/Api500Error.js";
 import BaseError from "../../util/errors/BaseError.js";
+import {generateId} from "../../util/helpers.js";
 
 export default class ProductService {
     #dao
@@ -13,7 +14,9 @@ export default class ProductService {
 
     async getProductById(id) {
         try {
+            console.log(8282, id)
             const data = await this.#dao.getById(id)
+            console.log(8282, data)
             if (data == null) throw new Api404Error(`User with id ${id} not found.`)
             const product = new Product(data)
             return product;
@@ -39,6 +42,7 @@ export default class ProductService {
 
     async saveProduct(data) {
         try {
+            data.id = generateId()
             const product = new Product(data)
             const insertedProduct = await this.#dao.save(product.dto())
             return new Product(insertedProduct)
