@@ -1,31 +1,30 @@
-import passport from 'passport';
+import jwt from 'jsonwebtoken';
+import userService from "../../../services/user/indexUserService.js";
+import logger from "../../../util/logger.js";
+import {jwtExpireTime, jwtSecretKey} from "../../../config.js";
 
 export default class AuthController {
 
     constructor() {
     }
 
-    loginController = passport.authenticate('login', {
-        successRedirect: '/successLogin', failureRedirect: '/failLogin'
-    })
-
-    successRegisterController = (req, res) => {
-        res.status(201).json(req.user)
-        // res.sendFile('registroOk.html', { root: './views' })
+    loginController = async (req, res, next) => {
+        try {
+            const {email, password} = req.body
+            const user = (await userService.authenticateUser(email, password)).dto()
+            const token = jwt.sign({email}, jwtSecretKey,
+                {
+                    expiresIn: jwtExpireTime,
+                });
+            const userToReturn = {...user, ...{token}};
+            delete userToReturn.id;
+            delete userToReturn.password;
+            res.status(200).json(userToReturn);
+        } catch (e) {
+            logger.error('Error login')
+            next(e)
+        }
     }
-
-    failRegisterController = (req, res) => {
-        res.status(400).json({err: 'fallo el registro'})
-    }
-
-    successLoginController = (req, res) => {
-        res.status(201).json({msg: 'ok'})
-    }
-
-    failLoginController = (req, res) => {
-        res.status(400).json({err: 'fallo el login'})
-    }
-
 
     logoutController = async (req, res) => {
         if (req.isAuthenticated()) {

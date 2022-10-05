@@ -13,11 +13,4 @@ function returnError(err, req, res, next) {
     res.status(err.statusCode || 500).json({error: err.name})
 }
 
-function isOperationalError(error) {
-    if (error instanceof BaseError) {
-        return error.isOperational
-    }
-    return false
-}
-
 export {logErrorMiddleware, returnError}

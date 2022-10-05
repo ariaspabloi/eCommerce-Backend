@@ -1,11 +1,9 @@
-import { Router } from 'express';
-import { webGetController, loginGetController, byeGetController } from '../controllers/web/webController.js';
+import {Router} from 'express';
+import {webGetController, webServerInfoController} from '../controllers/web/webController.js';
 
 const router = new Router()
 
 router.get('/', webGetController)
-router.get('/login', loginGetController)
-router.get('/bye', byeGetController)
-
+router.get('/server-info', webServerInfoController)
 
 export default router;

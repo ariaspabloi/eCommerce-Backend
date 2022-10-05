@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import requireAuthorization from '../../middlewares/authorizationMiddleware.js';
+import {requireAuthorization} from '../../middlewares/authorizationMiddleware.js';
 
 export default class OrderRouter {
     #router

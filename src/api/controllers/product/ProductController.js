@@ -1,8 +1,5 @@
 import logger from '../../../util/logger.js';
 
-const testMSG = "API Test /";
-//res.status(404).json({error: error.message})
-
 export default class ProductController {
     #service
 
@@ -10,13 +7,9 @@ export default class ProductController {
         this.#service = service
     }
 
-    info = (req, res) => {
-        res.json(testMSG)
-    }
-
     getProduct = async (req, res, next) => {
-        const id = req.params.id
         try {
+            const id = req.params.id
             const product = await this.#service.getProductById(id);
             return res.status(201).json(product.dto());
         } catch (e) {
@@ -38,8 +31,8 @@ export default class ProductController {
 
     postProduct = async (req, res, next) => {
         try {
-            const personaAgregada = await this.#service.saveProduct(req.body);
-            res.status(201).json(personaAgregada.dto())
+            const newProduct = await this.#service.saveProduct(req.body);
+            res.status(201).json(newProduct.dto())
         } catch (e) {
             logger.error(`Error postProducts: ${e}`)
             next(e)
@@ -61,7 +54,7 @@ export default class ProductController {
         try {
             const id = req.params.id
             await this.#service.deleteProduct(id)
-            res.sendStatus(201);
+            res.status(201).json({message: 'ok'});
         } catch (e) {
             logger.error(`Error deleteProduct: ${e}`)
             next(e)

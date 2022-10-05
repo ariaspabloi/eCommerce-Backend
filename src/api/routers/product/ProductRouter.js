@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import requireAuthorization from '../../middlewares/authorizationMiddleware.js';
+import {requireAdminAuthorization} from '../../middlewares/authorizationMiddleware.js';
 
 
 export default class ProductRouter {
@@ -9,9 +9,9 @@ export default class ProductRouter {
         this.#router = new Router()
             .get('/', controller.getProducts)
             .get('/:id', controller.getProduct)
-            .post('/', requireAuthorization, controller.postProduct)
-            .put('/:id', requireAuthorization, controller.putProduct)
-            .delete('/:id', requireAuthorization, controller.deleteProduct);
+            .post('/', requireAdminAuthorization, controller.postProduct)
+            .put('/:id', requireAdminAuthorization, controller.putProduct)
+            .delete('/:id', requireAdminAuthorization, controller.deleteProduct);
     }
 
     get() {

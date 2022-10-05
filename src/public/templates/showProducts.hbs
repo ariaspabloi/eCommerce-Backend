@@ -1,12 +1,12 @@
 <div class="text-bg-light p-3 mt-3 border border-dark rounded w-50 mx-auto">
-  <h3>Productos</h3>
-  <div  class="d-flex flex-wrap flex-column flex-md-row justify-content-evenly align-items-center py-4" >
-    {{#each products}}
-      <div class="mt-1">
-        <h3 class="fs-3">{{{this.title}}}</h3>
-        <p class="fs-4">{{{this.price}}}</p>
-        <img class="img-fluid" style="width: 80px" src={{{this.thumbnail}}} />
-      </div>
-    {{/each}}
-  </div>
+    <h3>Productos</h3>
+    <div class="d-flex flex-wrap flex-column flex-md-row justify-content-evenly align-items-center py-4">
+        {{#each products}}
+            <div class="mt-1">
+                <h3 class="fs-3">{{{this.title}}}</h3>
+                <p class="fs-4">{{{this.price}}}</p>
+                <img class="img-fluid" style="width: 80px" src={{{this.thumbnail}}} />
+            </div>
+        {{/each}}
+    </div>
 </div>

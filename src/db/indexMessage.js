@@ -1,16 +1,13 @@
-import {DBMODE, mongodb} from '../config.js'
+import {dbmode, mongodb} from '../config.js'
 import MessageDaoMongoDb from "./daos/MessageDaoMongoDb.js";
 import MessageDaoFirebase from "./daos/MessageDaoFirebase.js";
 
 let messageDao;
-if (DBMODE === 'mongodb') {
-    mongodb().connect()
+if (dbmode === 'mongodb') {
     messageDao = new MessageDaoMongoDb()
-} else if (DBMODE === 'firebase') {
-    //messageDao = new MessageDaoFirebase()
+} else if (dbmode === 'firebase') {
     messageDao = new MessageDaoFirebase()
 } else {
-    mongodb().connect()
     messageDao = new MessageDaoMongoDb()
 }
 

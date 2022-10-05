@@ -29,7 +29,7 @@ export default class CartService {
             const product = await this.#productService.getProductById(productId)
             cart.addProduct(product.dto())
             await this.#dao.update(cart.dto(), cartId)
-        } catch (error) {
+        } catch (e) {
             if (e instanceof BaseError) throw e;
             throw new Api500Error(`Error al agregar producto de id ${productId} al carrito de id ${cartId}`)
         }
@@ -47,14 +47,10 @@ export default class CartService {
 
     async deleteProduct(cartId, productId) {
         try {
-            const cart = await this.#dao.getById(cartId)
-            for (let i = 0; i < cart.products.length; i++) {
-                if (cart.products[i] == productId) {
-                    cart.products.splice(i, 1)
-                    break
-                }
-            }
-            await this.#dao.update(cart, cartId)
+            const cartData = await this.#dao.getById(cartId)
+            const cart = new Cart(cartData)
+            cart.removeProduct(productId)
+            await this.#dao.update(cart.dto(), cartId)
         } catch (e) {
             if (e instanceof BaseError) throw e;
             throw new Api500Error(`Error al borrar producto de id ${productId} del carrito de id ${cartId}`)
@@ -69,15 +65,6 @@ export default class CartService {
         } catch (e) {
             if (e instanceof BaseError) throw e;
             throw new Api500Error(`Error al vaciar carrito de id ${cartId}`)
-        }
-    }
-
-    async getCartById(id) {
-        try {
-            return await this.#dao.getById(id)
-        } catch (e) {
-            if (e instanceof BaseError) throw e;
-            throw new Api500Error(`Error conseguir carrito de id ${cartId}`)
         }
     }
 }

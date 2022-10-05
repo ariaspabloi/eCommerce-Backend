@@ -1,5 +1,5 @@
 import TwilioSmsSender from './TwilioSmsSender.js';
-import { twilioAccountSid, twilioAuthToken, twilioSmsPhoneNumber } from '../../config.js';
+import {twilioAccountSid, twilioAuthToken, twilioSmsPhoneNumber} from '../../config.js';
 
 const credenciales = {
     numero: twilioSmsPhoneNumber,

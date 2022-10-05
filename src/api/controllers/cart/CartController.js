@@ -1,6 +1,5 @@
 import logger from "../../../util/logger.js";
-
-const testMSG = "API Test /";
+import Api400Error from "../../../util/errors/Api400Error.js";
 
 export default class CartController {
     #service
@@ -9,15 +8,12 @@ export default class CartController {
         this.#service = service
     }
 
-    info = async (req, res) => {
-        res.json(testMSG)
-    }
-
-
     postAddProduct = async (req, res, next) => {
         try {
             const cartId = (await req.user).id
-            await this.#service.addProduct(cartId, req.body.productId)
+            const productId = req.body.productId
+            if (!productId) throw new Api400Error('Falta campo productId')
+            await this.#service.addProduct(cartId, productId)
             res.status(201).json()
         } catch (e) {
             logger.error(`Error postAddProduct: ${e}`)

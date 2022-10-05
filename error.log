@@ -1,94 +1,138 @@
-{"level":"error","message":"Error postProducts"}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"level":"error","message":"Error login"}
+{"isOperational":true,"level":"error","name":"Error buscando username undefined","statusCode":500}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"level":"error","message":"Error postAddProduct: Producto con id 443a41cd-223a-4868-9fca-9d5ad9a42e66 no encontrado.: Not found."}
+{"isOperational":true,"level":"error","name":"Producto con id 443a41cd-223a-4868-9fca-9d5ad9a42e66 no encontrado.","statusCode":404}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"level":"error","tipo":"ERROR_MENSAJERIA"}
+{"level":"error","tipo":"ERROR_MENSAJERIA"}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"body":"{\n    \"email\": \"alyson.fritsch37@ethereal.email\",\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"body":"{\n    \"email\": \"alyson.fritsch37@ethereal.email\",\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"body":"{\n    \"email\": \"alyson.fritsch37@ethereal.email\",\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Falta el campo obligatorio.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"El campo phone es requerido.","statusCode":400}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"body":"{\n    \"email\": \"alyson.fritsch37@ethereal.email\",\n    \"password\": \"1234\",\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"El campo name es requerido.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"el name debe tener al menos 6 caracteres","statusCode":400}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"el lastname debe tener al menos 6 caracteres","statusCode":400}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"level":"error","message":"Error register"}
+{"isOperational":true,"level":"error","name":"Email ya registrado.","statusCode":400}
+{"level":"error","storageErrors":[]}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"level":"error","message":"Error login"}
+{"isOperational":true,"level":"error","name":"Error buscando username undefined","statusCode":500}
+{"level":"error","message":"Error login"}
+{"isOperational":true,"level":"error","name":"Error buscando username xxx","statusCode":500}
+{"level":"error","message":"Error login"}
+{"isOperational":true,"level":"error","name":"Error buscando username xxx","statusCode":500}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"body":"{\n    \"email\": \"xxx\",\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error","message":"Error login"}
+{"isOperational":true,"level":"error","name":"Campo email o password faltante","statusCode":400}
+{"level":"error","message":"Error login"}
+{"isOperational":true,"level":"error","name":"Error buscando username xxx","statusCode":500}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"isOperational":true,"level":"error","name":"No datos encontrado con token","statusCode":401}
+{"level":"error","message":"Error getProduct: Producto con id xxx no encontrado.: Not found."}
+{"isOperational":true,"level":"error","name":"Producto con id xxx no encontrado.","statusCode":404}
+{"isOperational":true,"level":"error","name":"Solo accesible para admin","statusCode":403}
+{"level":"error","message":"Error postProducts: la imagen debe tener al menos 6 caracteres: Client request error."}
+{"isOperational":true,"level":"error","name":"la imagen debe tener al menos 6 caracteres","statusCode":400}
+{"body":"{\n    \"name\": \"El papa noel\",\n    \"description\": \"El mejor Papa Noel\"\n    \"image\": \"http://localhost:8080/images/09ab9340-39d1-4ca7-a0e5-96d7e7891fd7.png\"\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error","message":"Error postProducts: \"price\" es un campo requerido: Client request error."}
+{"isOperational":true,"level":"error","name":"\"price\" es un campo requerido","statusCode":400}
+{"body":"{\n    \"name\": \"El papa noel\",\n    \"description\": \"El mejor Papa Noel\",\n    \"price\": \"12\"\n    \"image\": \"http://localhost:8080/images/09ab9340-39d1-4ca7-a0e5-96d7e7891fd7.png\"\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error","message":"Error postProducts: el precio debe ser numerico: Client request error."}
+{"isOperational":true,"level":"error","name":"el precio debe ser numerico","statusCode":400}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"level":"error","message":"Error deleteProduct: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"}
+{"code":"ERR_HTTP_HEADERS_SENT","level":"error"}
+{"level":"error","message":"Error deleteProduct: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"}
+{"code":"ERR_HTTP_HEADERS_SENT","level":"error"}
+{"level":"error","message":"Error deleteProduct: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"}
+{"code":"ERR_HTTP_HEADERS_SENT","level":"error"}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"isOperational":true,"level":"error","name":"Producto con id 9fc6bf9d-d7e1-4d98-832e-902de956e2da no encontrado.","statusCode":404}
+{"level":"error","message":"Error getProduct: Producto con id 9fc6bf9d-d7e1-4d98-832e-902de956e2da no encontrado.: Not found."}
+{"isOperational":true,"level":"error","name":"Producto con id 9fc6bf9d-d7e1-4d98-832e-902de956e2da no encontrado.","statusCode":404}
+{"isOperational":true,"level":"error","name":"Producto con id 9fc6bf9d-d7e1-4d98-832e-902de956e2da no encontrado.","statusCode":404}
+{"level":"error","message":"Error putProduct: Producto con id 9fc6bf9d-d7e1-4d98-832e-902de956e2da no encontrado.: Not found."}
+{"isOperational":true,"level":"error","name":"Producto con id 9fc6bf9d-d7e1-4d98-832e-902de956e2da no encontrado.","statusCode":404}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"level":"error","message":"Error postAddProduct: Producto con id undefined no encontrado.: Not found."}
+{"isOperational":true,"level":"error","name":"Producto con id undefined no encontrado.","statusCode":404}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"level":"error","message":"Error postAddProduct: Falta campo productId: Client request error."}
+{"isOperational":true,"level":"error","name":"Falta campo productId","statusCode":400}
+{"level":"error","message":"Error deleteProduct: El producto no esta en el carrito.: Client request error."}
+{"isOperational":true,"level":"error","name":"El producto no esta en el carrito.","statusCode":400}
+{"level":"error","message":"Error deleteProduct: El producto no esta en el carrito.: Client request error."}
+{"isOperational":true,"level":"error","name":"El producto no esta en el carrito.","statusCode":400}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
+{"isOperational":true,"level":"error","name":"Carrito vacio, no se puede generar orden","statusCode":400}
+{"isOperational":true,"level":"error","name":"Carrito vacio, no se puede generar orden","statusCode":400}
+{"isOperational":true,"level":"error","name":"Carrito vacio, no se puede generar orden","statusCode":400}
+{"isOperational":true,"level":"error","name":"Carrito vacio, no se puede generar orden","statusCode":400}
+{"isOperational":true,"level":"error","name":"Error conseguir mensajes","statusCode":500}
 {"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error getProducts"}
-{"level":"error","message":"Error getProducts"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error getOrder"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProducts"}
-{"level":"error","message":"Error getProducts"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error putProducts"}
-{"level":"error","message":"Error putProducts"}
-{"level":"error","message":"Error putProducts"}
-{"level":"error","message":"Error putProducts"}
-{"level":"error","message":"Error putProducts"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error postOrder"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error getProduct"}
-{"level":"error","message":"Error postProducts"}
-{"level":"error","message":"Error postProducts: ReferenceError: name is not defined"}
-{"level":"error","message":"Error postProducts: Error al guardar producto Papa Noel TEST: Internal server error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 1: Internal server error."}
-{"level":"error","message":"Error putProduct: Error al actualizar producto con id 1s: Not found."}
-{"level":"error","message":"Error deleteProduct: Producto de id asda no encontrado para borrar: Client request error."}
-{"level":"error","message":"Error deleteProduct: Producto de id as no encontrado para borrar: Client request error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 123: Internal server error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"isOperational":true,"level":"error","name":"\"name\" es un campo requerido","statusCode":400}
-{"level":"error","message":"Error postProducts: \"name\" es un campo requerido: Client request error."}
-{"isOperational":true,"level":"error","name":"\"name\" es un campo requerido","statusCode":400}
-{"level":"error"}
-{"level":"error"}
-{"isOperational":true,"level":"error","statusCode":401}
-{"isOperational":true,"level":"error","statusCode":401}
-{"isOperational":true,"level":"error","statusCode":401}
-{"isOperational":true,"level":"error","statusCode":401}
-{"isOperational":true,"level":"error","statusCode":401}
-{"isOperational":true,"level":"error","statusCode":401}
-{"level":"error"}
-{"level":"error"}
-{"level":"error"}
-{"level":"error"}
-{"level":"error"}
-{"level":"error"}
-{"level":"error"}
-{"level":"error"}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
-{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
-{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
-{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6: Internal server error."}
-{"isOperational":true,"level":"error","name":"Error al recupar producto de id 61ada37c-8a46-4f9e-896d-dac8bbded4e6","statusCode":500}
-{"isOperational":true,"level":"error","statusCode":401}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id as: Internal server error."}
-{"isOperational":true,"level":"error","name":"Error al recupar producto de id as","statusCode":500}
-{"level":"error","message":"Error getProduct: Error al recupar producto de id 1: Internal server error."}
-{"isOperational":true,"level":"error","name":"Error al recupar producto de id 1","statusCode":500}
-{"level":"error","message":"Error getProduct: User with id 12 not found.: Not found."}
-{"isOperational":true,"level":"error","name":"User with id 12 not found.","statusCode":404}
-{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
-{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
-{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
-{"code":"LIMIT_UNEXPECTED_FILE","field":"image","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"isOperational":true,"level":"error","name":"Carrito vacio, no se puede generar orden","statusCode":400}
+{"level":"error","message":"Error deleteProduct: El producto no esta en el carrito.: Client request error."}
+{"isOperational":true,"level":"error","name":"El producto no esta en el carrito.","statusCode":400}
+{"level":"error","message":"Error deleteProduct: El producto no esta en el carrito.: Client request error."}
+{"isOperational":true,"level":"error","name":"El producto no esta en el carrito.","statusCode":400}

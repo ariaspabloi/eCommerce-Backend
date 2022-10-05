@@ -1,5 +1,4 @@
 import {MongoDbContainer} from '../containers/MongoDbContainer.js';
-import {ObjectId} from "mongodb";
 
 class UserDaoMongo extends MongoDbContainer {
     constructor() {

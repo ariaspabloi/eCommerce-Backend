@@ -1,12 +1,6 @@
 import {buildSchema} from 'graphql'
 import {graphqlHTTP} from 'express-graphql'
-import {
-    getProduct,
-    getProducts,
-    createProduct,
-    updateProduct,
-    deleteProduct
-} from "./productGraphqlController.js";
+import {createProduct, deleteProduct, getProduct, getProducts, updateProduct} from "./productGraphqlController.js";
 
 const schema = buildSchema(`
   input ProductInput {

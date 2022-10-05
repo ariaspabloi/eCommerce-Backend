@@ -1,9 +1,8 @@
 import {mongodb} from '../../config.js';
-import {ObjectId} from 'mongodb';
 
 export class MongoDbContainer {
     constructor(collectionName, dbName) {
-        this.collection = (mongodb().db(dbName)).collection(collectionName)
+        this.collection = (mongodb.db(dbName)).collection(collectionName)
     }
 
     async getAll() {

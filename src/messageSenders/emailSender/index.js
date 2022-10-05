@@ -1,5 +1,5 @@
 import NodemailerEmailSender from './NodemailerEmailSender.js';
-import { nodemailerPass, nodemailerUser } from '../../config.js';
+import {nodemailerPass, nodemailerUser} from '../../config.js';
 
 const configData = {
     service: 'gmail',

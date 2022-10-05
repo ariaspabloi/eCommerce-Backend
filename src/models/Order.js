@@ -2,17 +2,31 @@ import Api400Error from "../util/errors/Api400Error.js";
 
 export default class Order {
     #id
+    #date
+    #clientId
     #products
-    #email
-    #name
-    #lastname
 
-    constructor({id, products, email, name, lastname}) {
+    constructor(id, date, clientId, products) {
         this.#setId(id);
+        this.#setDate(date)
+        this.#setClientId(clientId)
         this.#setProducts(products)
-        this.#setEmail(email)
-        this.#setName(name)
-        this.#setLastname(lastname)
+    }
+
+    get id() {
+        return this.#id;
+    }
+
+    get products() {
+        return this.#products;
+    }
+
+    get clientId() {
+        return this.#clientId;
+    }
+
+    get date() {
+        return this.#date;
     }
 
     #setId(value) {
@@ -32,63 +46,28 @@ export default class Order {
         this.#products = value
     }
 
-    #setEmail(value) {
+    #setClientId(value) {
         if (!value)
-            throw new Api400Error('El campo email no esta.');
+            throw new Api400Error('El campo clientId no esta.');
         if (typeof value !== 'string')
-            throw new Api400Error('El email debe estar formado por caracteres.');
+            throw new Api400Error('El clientId debe estar formado por caracteres.');
         if (value.length < 6)
-            throw new Api400Error('El email debe tener al menos 6 caracteres.');
-        this.#email = value
+            throw new Api400Error('El clientId debe tener al menos 6 caracteres.');
+        this.#clientId = value
     }
 
-    #setName(value) {
+    #setDate(value) {
         if (!value)
-            throw new Api400Error('El campo name no esta.');
-        if (typeof value !== 'string')
-            throw new Api400Error('El name debe estar formado por caracteres.');
-        if (value.length < 6)
-            throw new Api400Error('El name debe tener al menos 6 caracteres.');
-        this.#name = value
-    }
-
-    #setLastname(value) {
-        if (!value)
-            throw new Api400Error('El campo lastname no esta.');
-        if (typeof value !== 'string')
-            throw new Api400Error('El lastname debe estar formado por caracteres.');
-        if (value.length < 6)
-            throw new Api400Error('El lastname debe tener al menos 6 caracteres.');
-        this.#lastname = value
-    }
-
-    get id() {
-        return this.#id;
-    }
-
-    get products() {
-        return this.#products;
-    }
-
-    get email() {
-        return this.#email;
-    }
-
-    get name() {
-        return this.#name;
-    }
-
-    get lastname() {
-        return this.#lastname;
+            throw new Api400Error('El campo date no esta.');
+        this.#date = value
     }
 
     dto() {
         return Object.freeze({
             ...((this.#id) && {id: this.#id}),
             products: this.#products,
-            email: this.#email,
-            name: this.#name,
-            lastname: this.#lastname,
+            clientId: this.#clientId,
+            date: this.#date
         })
     }
 }

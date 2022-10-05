@@ -7,6 +7,10 @@ class Resize {
         this.folder = folder;
     }
 
+    static filename() {
+        return `${generateId()}.png`;
+    }
+
     async save(buffer) {
         const filename = Resize.filename();
         const filepath = this.filepath(filename);
@@ -18,10 +22,6 @@ class Resize {
             .toFile(filepath);
 
         return filename;
-    }
-
-    static filename() {
-        return `${generateId()}.png`;
     }
 
     filepath(filename) {

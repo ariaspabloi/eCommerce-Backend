@@ -1,16 +1,16 @@
 <div class="text-bg-light p-3 mt-4 border border-dark rounded w-50 mx-auto">
-  <h3>
-    Mensajes
-  </h3>
-  <div class="p-4 mt-3 bg-white border border-dark rounded" style="word-wrap: break-word;">
-    {{#each messages}}
-      <p>
-        <span style="font-weight:bold;color: blue">{{this.author.email}}</span>
-        <span style="color: grey">[{{this.date}}]</span>
-        :
-        <i style="color: green;">{{this.text}}</i>
-        <img src="{{this.author.avatar}}" class="rounded-circle" style="width: 32px; height: 32px;">
-      </>
-    {{/each}}
-  </div>
+    <h3>
+        Mensajes
+    </h3>
+    <div class="p-4 mt-3 bg-white border border-dark rounded" style="word-wrap: break-word;">
+        {{#each messages}}
+            <p>
+                <span style="font-weight:bold;color: blue">{{this.author.email}}</span>
+                <span style="color: grey">[{{this.date}}]</span>
+                :
+                <i style="color: green;">{{this.text}}</i>
+                <img src="{{this.author.avatar}}" class="rounded-circle" style="width: 32px; height: 32px;">
+            </>
+        {{/each}}
+    </div>
 </div>

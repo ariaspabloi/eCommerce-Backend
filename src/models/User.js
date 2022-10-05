@@ -12,11 +12,11 @@ export default class User {
     constructor({id, email, password, name, lastname, phone, image}) {
         this.#setId(id)
         this.#setEmail(email)
-        this.#password = password;
-        this.#name = name;
-        this.#lastname = lastname;
-        this.#phone = phone;
-        this.#image = image;
+        this.password = password;
+        this.name = name;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.image = image;
     }
 
 
@@ -24,25 +24,8 @@ export default class User {
         return this.#id;
     }
 
-    #setId(value) {
-        if (!value) return
-        if (typeof value !== 'string')
-            throw new Api400Error('El id debe estar formado por caracteres.');
-        this.#id = value
-    }
-
     get email() {
         return this.#email;
-    }
-
-    #setEmail(value) {
-        if (!value)
-            throw new Api400Error('El campo email es requerido.');
-        if (typeof value !== 'string')
-            throw new Api400Error('El email debe estar formado por caracteres.');
-        if (value.length < 6)
-            throw new Api400Error('El email debe tener al menos 6 caractere.s');
-        this.#email = value
     }
 
     get password() {
@@ -68,8 +51,8 @@ export default class User {
             throw new Api400Error('El campo name es requerido.');
         if (typeof value !== 'string')
             throw new Api400Error('el name debe estar formado por caracteres');
-        if (value.length < 6)
-            throw new Api400Error('el name debe tener al menos 6 caracteres');
+        if (value.length <= 4)
+            throw new Api400Error('el name debe tener al menos 4 caracteres');
         this.#name = value
     }
 
@@ -82,8 +65,8 @@ export default class User {
             throw new Api400Error('El campo lastname es requerido.');
         if (typeof value !== 'string')
             throw new Api400Error('el lastname debe estar formado por caracteres');
-        if (value.length < 6)
-            throw new Api400Error('el lastname debe tener al menos 6 caracteres');
+        if (value.length <= 4)
+            throw new Api400Error('el lastname debe tener al menos 4 caracteres');
         this.#lastname = value
     }
 
@@ -113,6 +96,23 @@ export default class User {
         if (value.length < 3)
             throw new Api400Error('la image debe tener al menos 3 caracteres');
         this.#image = value
+    }
+
+    #setId(value) {
+        if (!value) return
+        if (typeof value !== 'string')
+            throw new Api400Error('El id debe estar formado por caracteres.');
+        this.#id = value
+    }
+
+    #setEmail(value) {
+        if (!value)
+            throw new Api400Error('El campo email es requerido.');
+        if (typeof value !== 'string')
+            throw new Api400Error('El email debe estar formado por caracteres.');
+        if (value.length < 6)
+            throw new Api400Error('El email debe tener al menos 6 caractere.s');
+        this.#email = value
     }
 
     dto() {

@@ -1,5 +1,5 @@
 import WhatsappSender from './TwilioWhatsappSender.js';
-import { twilioAccountSid, twilioAuthToken, twilioWhatsappPhoneNumber } from '../../config.js';
+import {twilioAccountSid, twilioAuthToken, twilioWhatsappPhoneNumber} from '../../config.js';
 
 const credenciales = {
     numero: twilioWhatsappPhoneNumber,

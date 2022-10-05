@@ -9,7 +9,7 @@ export default class MessageRepo {
 
     async getAll() {
         try {
-            const dtos = await this.dao.getAll()
+            const dtos = await this.#dao.getAll()
             return dtos.map(dto => new Message(dto))
         } catch (e) {
             throw e;
@@ -18,7 +18,7 @@ export default class MessageRepo {
 
     async getById(id) {
         try {
-            const dto = await this.dao.getById(idProd)
+            const dto = await this.#dao.getById(idProd)
             return new Message(dto)
         } catch (e) {
             throw e;
@@ -28,7 +28,7 @@ export default class MessageRepo {
     async save(data) {
         try {
             const dto = new Message(data)
-            const insertedDto = await this.dao.save(data);
+            const insertedDto = await this.#dao.save(data);
             return new Message(insertedDto)
 
         } catch (e) {
@@ -38,7 +38,7 @@ export default class MessageRepo {
 
     async deleteById(id) {
         try {
-            await this.dao.deleteById(id)
+            await this.#dao.deleteById(id)
         } catch (e) {
             throw e;
         }

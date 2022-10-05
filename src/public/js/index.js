@@ -6,18 +6,14 @@ const message = new schema.Entity('messages', {
     author: author
 });
 
-loginInfo()
-
 socket.on('messages', ({messages}) => {
     const messagesDesnormalized = denormalize(messages.result, [message], messages.entities)
     showCompressPercentage(messages, messagesDesnormalized)
     showMessages(messagesDesnormalized)
 })
 
-socket.on('products', ({products}) => {
-    showProducts(products)
-})
-
+const btnServerinfo = document.getElementById('btn_serverinfo')
+btnServerinfo.onclick = () => window.location.href = 'server-info'
 
 const btnAddMessage = document.getElementById('sendBtn')
 btnAddMessage.addEventListener('click', event => {
@@ -45,33 +41,6 @@ btnAddMessage.addEventListener('click', event => {
     document.getElementById('inputMsg').value = "";
     socket.emit('message', msgToSend)
 })
-
-const btnAddProduct = document.getElementById('addProduct_btn')
-btnAddProduct.addEventListener('click', event => {
-    const title = document.getElementById('title').value
-    const price = document.getElementById('price').value
-    const thumbnail = document.getElementById('thumbnail').value
-    socket.emit('product', {title, price, thumbnail})
-})
-
-
-async function loginInfo() {
-    const divLoginInfo = document.getElementById('loginInfo')
-    const user = (await axios.get('/logininfo')).data.user
-    if (user) {
-        const onclick = "location.href = './bye';"
-        divLoginInfo.innerHTML = `Logeado ${user} <button onclick="${onclick}">Deslogeate</button>`
-    } else {
-        const onclick = "location.href = './login';"
-        divLoginInfo.innerHTML = `<button onclick="${onclick}">Logeate!</button>`
-    }
-}
-
-async function showProducts(products) {
-    const divProducts = document.getElementById('products')
-    //divMessages.innerHTML = messages.map(m => `<p>${m.autor}: ${m.msg}</p>`).join("")
-    divProducts.innerHTML = await buildTemplate('templates/showProducts.hbs', {products});
-}
 
 async function showMessages(messages) {
     const divMessages = document.getElementById('messages')

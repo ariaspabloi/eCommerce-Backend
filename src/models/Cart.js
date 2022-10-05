@@ -7,22 +7,40 @@ export default class Cart {
     constructor({id, products}) {
         this.#setId(id);
         this.#setProducts(products)
-        this._products = products;
+    }
+
+    get id() {
+        return this.#id;
+    }
+
+    get products() {
+        return this.#products;
     }
 
     addProduct(product) {
         if (!product.id)
             throw new Api400Error('El producto debe tener id.');
-        this.#products.push(product.id)
+        const index = this.#products.findIndex(p => p.product?.id === product.id)
+        if (index !== -1) {
+            this.#products[index].cant++
+            return;
+        }
+        this.#products.push({product, cant: 1})
     }
 
-    removeProduct(product) {
-        if (!product.id)
+    removeProduct(productId) {
+        if (!productId)
             throw new Api400Error('El producto debe tener id.');
-        for (let i = 0; i < this.#products.length; i++) {
-            if (this.#products[i] === productId._id) {
-                this.#products.splice(i, 1)
-                break
+        const index = this.#products.findIndex(p => p.product?.id === productId)
+        if (index === -1) {
+            throw new Api400Error('El producto no esta en el carrito.');
+        }
+        this.#products[index].cant--
+        if (this.#products[index].cant <= 0) {
+            if (this.#products[index].cant > 1) {
+                this.#products.splice(index, 1)
+            } else {
+                this.#products = []
             }
         }
     }
@@ -42,14 +60,6 @@ export default class Cart {
         if (!Array.isArray(value))
             throw new Api400Error('Los productos debe estar formado por un array.');
         this.#products = value
-    }
-
-    get id() {
-        return this.#id;
-    }
-
-    get products() {
-        return this.#products;
     }
 
     dto() {

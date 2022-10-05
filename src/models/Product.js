@@ -10,9 +10,59 @@ export default class Product {
     constructor({id, name, description, price, image}) {
         this.#setId(id);
         this.#setName(name);
-        this.#description = description;
-        this.#price = price;
-        this.#image = image;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
+
+    get id() {
+        return this.#id;
+    }
+
+    get name() {
+        return this.#name;
+    }
+
+    get description() {
+        return this.#description;
+    }
+
+    set description(value) {
+        if (!value)
+            throw new Api400Error('"description" es un campo requerido');
+        if (typeof value !== 'string')
+            throw new Api400Error('la descripcion debe estar formado por caracteres');
+        if (value.length < 4)
+            throw new Api400Error('la descripcion debe tener al menos 4 caracteres');
+        this.#description = value;
+    }
+
+    get price() {
+        return this.#price;
+    }
+
+    set price(value) {
+        if (!value)
+            throw new Api400Error('"price" es un campo requerido');
+        if (isNaN(value))
+            throw new Api400Error('el precio debe ser numerico');
+        if (value <= 0)
+            throw new Api400Error('el precio debe ser mayor a cero');
+        this.#price = value;
+    }
+
+    get image() {
+        return this.#image;
+    }
+
+    set image(value) {
+        if (!value)
+            throw new Api400Error('"image" es un campo requerido');
+        if (typeof value !== 'string')
+            throw new Api400Error('la imagen debe estar formado por caracteres');
+        if (value.length < 6)
+            throw new Api400Error('la imagen debe tener al menos 6 caracteres');
+        this.#image = value;
     }
 
     #setId(value) {
@@ -30,56 +80,6 @@ export default class Product {
         if (value.length < 4)
             throw new Api400Error('el name debe tener al menos 4 caracteres');
         this.#name = value
-    }
-
-    set description(value) {
-        if (!value)
-            throw new Api400Error('"description" es un campo requerido');
-        if (typeof value !== 'string')
-            throw new Api400Error('la descripcion debe estar formado por caracteres');
-        if (value.length < 4)
-            throw new Api400Error('la descripcion debe tener al menos 4 caracteres');
-        this.#description = value;
-    }
-
-    set price(value) {
-        if (!value)
-            throw new Api400Error('"price" es un campo requerido');
-        if (isNaN(value))
-            throw new Api400Error('el precio debe ser numerico');
-        if (value <= 0)
-            throw new Api400Error('el precio debe ser mayor a cero');
-        this.#price = value;
-    }
-
-    set image(value) {
-        if (!value)
-            throw new Api400Error('"image" es un campo requerido');
-        if (typeof value !== 'string')
-            throw new Api400Error('la imagen debe estar formado por caracteres');
-        if (value.length < 6)
-            throw new Api400Error('la imagen debe tener al menos 6 caracteres');
-        this.#image = value;
-    }
-
-    get id() {
-        return this.#id;
-    }
-
-    get name() {
-        return this.#name;
-    }
-
-    get description() {
-        return this.#description;
-    }
-
-    get price() {
-        return this.#price;
-    }
-
-    get image() {
-        return this.#image;
     }
 
     dto() {

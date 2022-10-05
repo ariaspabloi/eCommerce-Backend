@@ -21,8 +21,8 @@ export default class MessageService {
 
     async getMessages() {
         try {
-            let msgs = await this.#messageRepo.getAll()
-            return this.#normalize(msgs, [this.#message])
+            const msgs = await this.#messageRepo.getAll()
+            return this.#normalize(msgs.map(m => m.dto()), [this.#message])
         } catch (e) {
             if (e instanceof BaseError) throw e;
             throw new Api500Error(`Error conseguir mensajes`)

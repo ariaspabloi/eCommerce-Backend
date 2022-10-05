@@ -1,4 +1,4 @@
-import { createTransport } from 'nodemailer';
+import {createTransport} from 'nodemailer';
 
 export default class NodemailerEmailSender {
 
@@ -7,7 +7,7 @@ export default class NodemailerEmailSender {
         this.transporter = createTransport(configData);
     }
 
-    async enviar({ asunto, destinatario, mensaje, adjuntos = [] }) {
+    async enviar({asunto, destinatario, mensaje, adjuntos = []}) {
 
         const mailOptions = {
             from: this.from,

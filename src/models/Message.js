@@ -14,6 +14,22 @@ export default class Message {
         this.#setDate(date)
     }
 
+    get id() {
+        return this.#id;
+    }
+
+    get author() {
+        return this.#author;
+    }
+
+    get text() {
+        return this.#text;
+    }
+
+    get date() {
+        return this.#date;
+    }
+
     #setId(value) {
         if (!value) return
         if (typeof value !== 'string')
@@ -48,24 +64,6 @@ export default class Message {
             throw new Api400Error('La fecha debe tener al menos 6 caracteres.');
         this.#date = value
     }
-
-
-    get id() {
-        return this.#id;
-    }
-
-    get author() {
-        return this.#author;
-    }
-
-    get text() {
-        return this.#text;
-    }
-
-    get date() {
-        return this.#date;
-    }
-
 
     dto() {
         return Object.freeze({

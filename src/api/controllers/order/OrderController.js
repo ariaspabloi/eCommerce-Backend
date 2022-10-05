@@ -1,18 +1,10 @@
 import logger from '../../../util/logger.js';
 
-const testMSG = "API Test /";
-
 export default class OrderController {
     #service
-    #userService
 
-    constructor(orderService, userService) {
+    constructor(orderService) {
         this.#service = orderService
-        this.#userService = userService
-    }
-
-    info = async (req, res) => {
-        res.json(testMSG)
     }
 
     getOrder = async (req, res, next) => {
@@ -27,9 +19,9 @@ export default class OrderController {
 
     postOrder = async (req, res, next) => {
         try {
-            const {email, name, lastname, phone, id} = await this.#userService.getUserById((await req.user).id)
-            const ordenAgregada = this.#service.registerOrder(id, email, name, lastname, phone)
-            res.status(201).json(ordenAgregada)
+            const cartId = (await req.user).id
+            const newOrder = await this.#service.registerOrder(cartId)
+            res.status(201).json(newOrder)
         } catch (e) {
             logger.error('Error postOrder')
             next(e)

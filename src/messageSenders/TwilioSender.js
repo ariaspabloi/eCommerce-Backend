@@ -1,12 +1,12 @@
 import twilio from 'twilio';
 
 export default class TwilioSender {
-    constructor({ numero, usuario, contrasenia }) {
+    constructor({numero, usuario, contrasenia}) {
         this.numero = numero
         this.cliente = twilio(usuario, contrasenia)
     }
 
-    async enviar({ numero, texto }) {
+    async enviar({numero, texto}) {
 
         const mensaje = {
             from: this.numero,

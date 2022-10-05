@@ -14,18 +14,16 @@ export default class ProductService {
 
     async getProductById(id) {
         try {
-            console.log(8282, id)
             const data = await this.#dao.getById(id)
-            console.log(8282, data)
-            if (data == null) throw new Api404Error(`User with id ${id} not found.`)
-            const product = new Product(data)
-            return product;
+            if (!data) throw new Api404Error(`Producto con id ${id} no encontrado.`)
+            return new Product(data)
         } catch (e) {
             if (e instanceof BaseError) throw e;
             throw new Api500Error(`Error al recupar producto de id ${id}`)
         }
     }
 
+    //graphql support
     async getProducts(field = "none", value = "none") {
         try {
             let products = await this.#dao.getAll()
@@ -54,6 +52,7 @@ export default class ProductService {
 
     async updateProduct(data, id) {
         try {
+            const oldProduct = await this.getProductById(id)
             const product = new Product(data)
             await this.#dao.update(product.dto(), id)
             return product
