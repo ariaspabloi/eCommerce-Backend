@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import {MongoClient, ServerApiVersion} from 'mongodb';
-import admin from "firebase-admin";
-import serviceAccount from "./db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json" assert {type: "json"}
+//import admin from "firebase-admin";
+//import serviceAccount from "./db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json" assert {type: "json"}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 dotenv.config({
@@ -46,10 +46,12 @@ function getMongoDb() {
 
 //Firebase connection settings
 function getFirestoreDb() {
+    /*
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
     return admin.firestore();
+     */
 }
 
 const fire = getFirestoreDb()
