@@ -29,8 +29,6 @@ export default class MessageRepo {
 
     async save(data) {
         try {
-            console.log(1, data)
-            console.log((new Author(data.author)).dto())
             const dto = new Message(data)
             const insertedDto = await this.#dao.save(data);
             return new Message(insertedDto)
