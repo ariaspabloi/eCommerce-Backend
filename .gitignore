@@ -1,5 +1,5 @@
-/node_modules
-/.env
-/src/db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json
-/error.log
-/warn.log
+node_modules
+.env
+src/db/backendch-76a46-firebase-adminsdk-kog9c-f822c15d34.json
+error.log
+warn.log
