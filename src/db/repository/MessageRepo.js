@@ -1,4 +1,5 @@
 import Message from "../../models/Message.js";
+import Author from "../../models/Author.js";
 
 export default class MessageRepo {
     #dao
@@ -10,6 +11,7 @@ export default class MessageRepo {
     async getAll() {
         try {
             const dtos = await this.#dao.getAll()
+            dtos.map(dto => new Message(dto))
             return dtos.map(dto => new Message(dto))
         } catch (e) {
             throw e;
@@ -27,6 +29,8 @@ export default class MessageRepo {
 
     async save(data) {
         try {
+            console.log(1, data)
+            console.log((new Author(data.author)).dto())
             const dto = new Message(data)
             const insertedDto = await this.#dao.save(data);
             return new Message(insertedDto)

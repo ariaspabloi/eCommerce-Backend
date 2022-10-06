@@ -1,5 +1,6 @@
+import Api400Error from "../util/errors/Api400Error.js";
+
 export default class Author {
-    #id
     #email
     #name
     #lastname
@@ -7,18 +8,13 @@ export default class Author {
     #alias
     #avatar
 
-    constructor({id, email, name, lastname, age, alias, avatar}) {
-        this.#setId(id);
+    constructor({email, name, lastname, age, alias, avatar}) {
         this.#setEmail(email)
         this.name = name
         this.lastname = lastname
         this.age = age
         this.alias = alias
         this.avatar = avatar
-    }
-
-    get id() {
-        return this.#id;
     }
 
     get email() {
@@ -32,9 +28,9 @@ export default class Author {
     set name(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el name del author debe estar formado por caracteres');
+            throw new Api400Error('el name del author debe estar formado por caracteres');
         if (value.length < 3)
-            throw new Error('el name del autor debe tener al menos 3 caracteres');
+            throw new Api400Error('el name del autor debe tener al menos 3 caracteres');
         this.#name = value
     }
 
@@ -45,9 +41,9 @@ export default class Author {
     set lastname(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el lastname del author debe estar formado por caracteres');
+            throw new Api400Error('el lastname del author debe estar formado por caracteres');
         if (value.length < 3)
-            throw new Error('el lastname del autor debe tener al menos 3 caracteres');
+            throw new Api400Error('el lastname del autor debe tener al menos 3 caracteres');
         this.#lastname = value
     }
 
@@ -57,10 +53,10 @@ export default class Author {
 
     set age(value) {
         if (!value) return
-        if (isNaN(nalue))
-            throw new Error('el age del author debe estar formado por numeros');
-        if (value.length > 1)
-            throw new Error('el age del autor debe tener al menos mas de 1 anio');
+        if (isNaN(value))
+            throw new Api400Error('el age del author debe estar formado por numeros');
+        if (value < 1)
+            throw new Api400Error('el age del autor debe tener al menos mas de 1 anio');
         this.#age = value
     }
 
@@ -71,9 +67,9 @@ export default class Author {
     set alias(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el alias del author debe estar formado por caracteres');
+            throw new Api400Error('el alias del author debe estar formado por caracteres');
         if (value.length < 3)
-            throw new Error('el alias del autor debe tener al menos 3 caracteres');
+            throw new Api400Error('el alias del autor debe tener al menos 3 caracteres');
         this.#alias = value
     }
 
@@ -84,29 +80,21 @@ export default class Author {
     set avatar(value) {
         if (!value) return
         if (typeof value !== 'string')
-            throw new Error('el avatar del author debe estar formado por caracteres');
+            throw new Api400Error('el avatar del author debe estar formado por caracteres');
         if (value.length < 3)
-            throw new Error('el avatar del autor debe tener al menos 3 caracteres');
+            throw new Api400Error('el avatar del autor debe tener al menos 3 caracteres');
         this.#avatar = value
-    }
-
-    #setId(value) {
-        if (!value) return
-        if (typeof value !== 'string')
-            throw new Error('el id debe estar formado por caracteres');
-        this.#id = value
     }
 
     #setEmail(value) {
         if (!value) return
         if (typeof yourVariable === 'string')
-            throw new Error('el author no tiene email');
+            throw new Api400Error('el author no tiene email');
         this.#email = value
     }
 
     dto() {
         return Object.freeze({
-            ...((this.#id) && {id: this.#id}),
             email: this.#email,
             name: this.#name,
             lastname: this.#lastname,
