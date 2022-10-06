@@ -17,6 +17,7 @@ const adminEmail = process.env.ADMIN_EMAIL
 const jwtExpireTime = process.env.JWT_EXPIRETIME
 const jwtSecretKey = process.env.JWT_SECRETKEY
 const dbmode = process.env.DB
+const mongodbServer = process.env.MONGODBSERVER
 const mongodbUser = process.env.MONGODBUSER
 const mongodbPassword = process.env.MONGODBPASSWORD
 const nodemailerUser = process.env.MAIL_AUTH_USER
@@ -34,7 +35,7 @@ function getMongoDb() {
     if (env === 'DEV') {
         uri = `mongodb://127.0.0.1:27017`
     } else {
-        uri = `mongodb+srv://${mongodbUser}:${mongodbPassword}@cluster0.ot66qlp.mongodb.net/?retryWrites=true&w=majority`
+        uri = `mongodb+srv://${mongodbUser}:${mongodbPassword}@${mongodbServer}/?retryWrites=true&w=majority`
     }
     return (new MongoClient(uri, {
         useNewUrlParser: true,
